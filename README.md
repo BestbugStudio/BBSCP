@@ -4,7 +4,7 @@
 The purpose of this software is to allow us (web developers) in creating new websites and web application easily without starting everytime from scratch and without using cms like joomla/WordPress and so on.
 
 
-~ ~ ~
+---
 
 ## Back-end
 
@@ -38,27 +38,27 @@ A custom module must have
 
 
 ### INSTALLATION
-	
-	index.php will attempt a connection to the database and start the installation routine, it will:
 
-	* ask for:
-		* Site name --> it will be saved in /config/mainconfig.xml
-		* Firstname --> it will be saved in the database
-		* Lastname  --> it will be saved in the database
-		* email     --> it will be saved in the database
-		* Nickname  --> it will be saved in the database
-		* database name --> it will be saved in the /config/mainconfig.xml
-		* database password --> it will be saved in the /config/mainconfig.xml
-		* database host --> it will be saved in the /config/mainconfig.xml
-		* database port --> it will be saved in the /config/mainconfig.xml
+index.php will attempt a connection to the database and start the installation routine, it will
 
-	* Install the database and create the first user
-	
-	* Redirect to /admin/index.php
+* ask for:
+	* Site name --> it will be saved in /config/mainconfig.xml
+	* Firstname --> it will be saved in the database
+	* Lastname  --> it will be saved in the database
+	* email     --> it will be saved in the database
+	* Nickname  --> it will be saved in the database
+	* database name --> it will be saved in the /config/mainconfig.xml
+	* database password --> it will be saved in the /config/mainconfig.xml
+	* database host --> it will be saved in the /config/mainconfig.xml
+	* database port --> it will be saved in the /config/mainconfig.xml
+
+* Install the database and create the first user
+
+* Redirect to /admin/index.php
 
 
 
-~ ~ ~
+---
 
 ### A brief note
 This software is licenced under CC by-nc 4.0 this means you can take it and do whatever you want with it, unless you want to use it for commercial purposes!
