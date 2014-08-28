@@ -10,7 +10,7 @@
 	header("Expires: 0");
 
 	include_once dirname(__FILE__).'/install/install.php';
-	include_once dirname(__FILE__).'/config/database.php';
+	include_once dirname(__FILE__).'/utilities/database.php';
 	include_once dirname(__FILE__).'/config/query.php';
 
 

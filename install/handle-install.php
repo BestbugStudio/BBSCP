@@ -6,7 +6,7 @@
 	echo '<link rel="stylesheet" type="text/css" href="./../framework/bootstrap/css/bootstrap.min.css"/>';
 
 	include_once dirname(__FILE__).'/install.php';
-	include_once dirname(__FILE__).'/../config/database.php';
+	include_once dirname(__FILE__).'/../utilites/database.php';
 	include_once dirname(__FILE__).'/../config/query.php';
 
 	$config_info = array(

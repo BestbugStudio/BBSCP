@@ -9,9 +9,9 @@
 	header("Pragma: no-cache"); 
 	header("Expires: 0");
 
-	include_once dirname(__FILE__).'/../plugin/install.php';
-	include_once dirname(__FILE__).'/plugin/login.php';
-	include_once dirname(__FILE__).'/../config/database.php';
+	include_once dirname(__FILE__).'/../utilites/install.php';
+	include_once dirname(__FILE__).'/utilites/login.php';
+	include_once dirname(__FILE__).'/../utilites/database.php';
 	include_once dirname(__FILE__).'/../config/query.php';
 
 	/* Login Title */
