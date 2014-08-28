@@ -32,7 +32,7 @@
 
 	$InstallationInstance = Install::getInstance();
 
-	if(json_decode($Inst->checkInstallation(), true)['Status'] == 'KO'){
+	if(json_decode($InstallationInstance->checkInstallation(), true)['Status'] == 'KO'){
 		echo '<title> WELCOME! </title>';
 		$InstallationInstance->startInstallation();
 		die;		

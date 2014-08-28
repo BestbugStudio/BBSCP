@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <sitename>pippo</sitename>
+  <sitename/>
   <dbproperties>
-    <dbname>adb</dbname>
-    <dbuser>root</dbuser>
-    <dbpwd>root</dbpwd>
+    <dbname/>
+    <dbuser/>
+    <dbpwd/>
     <dbaddr>
-      <dbhost>localhost</dbhost>
-      <dbport>3306</dbport>
+      <dbhost/>
+      <dbport/>
     </dbaddr>
   </dbproperties>
 </items>
