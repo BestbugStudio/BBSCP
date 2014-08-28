@@ -1,0 +1,144 @@
+ 	/********************************************/
+	/******* BestBug Studio Control Panel *******/
+	/********************************************/
+body{
+	background-color: #FFE4B5;
+}
+
+.copyheader{
+	text-align: center;
+	background-color: transparent;
+	border: none;
+	font-size: 12px;
+	margin-bottom: 2px;
+}
+
+.loginform{
+	width:20%;
+	min-width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
+	padding:1%;
+	text-align: center;	
+	border-radius: 5px;
+	background-color: #aa6600;
+}
+
+.wronglog{
+	width:20%;
+	min-width: 250px;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	text-align: center;
+}
+
+.deletealert{}
+
+.choice{
+	text-align: right;
+	margin-right: 0px;
+}
+
+.rowabsolute{
+	position: absolute;
+	z-index: 1000;
+}
+
+/*
+.deletealert{
+	position: absolute;
+	z-index: 1000;
+	margin-top:200px;
+	margin-right: 50%;
+	margin-left: 50%;
+	width: 200px;
+	height: 100px;
+}
+*/
+
+	/**********/
+	/** MENU **/
+	/**********/
+	
+.CPmenu{
+	background-color: rgba(0,0,0,0.2);
+	border: none;
+
+}
+.homespan{
+	font-size: 20px;
+}
+.menuitem a{
+	color:#000 !important;
+	text-decoration: none;
+	cursor: pointer;
+}
+.active a{
+	color:#000 !important;
+	background-color: #C65D57 !important;
+}
+.menuitem a:hover{
+	border-left: 1px solid black;
+	border-right:1px solid black;
+}
+
+	/****************/
+	/** MANAGEMENT **/
+	/****************/
+
+.newButton{
+	margin-top: 20px;
+}
+.panel{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.tabletitle{
+	text-align: center;
+}
+.colTitles{
+	font-weight: bold;
+}
+.editspan{
+	color:orange;
+}
+.removespan{
+	color:red;
+}
+	/************/
+	/** EDITOR **/
+	/************/
+
+#cke_editor{}
+.savebutton{}
+.savearticle{
+	margin-top:-5px;
+}
+.titlepage{
+	text-align: center;
+}
+.pagelist{}
+.articleTitle{
+	width: 100%;
+}
+#articleTitle{}
+
+.picker{
+	background-color:white;
+	border-radius:3px;
+	border:1px solid rgb(204,204,204);
+	padding-bottom: 5px;
+	padding-top: 10px;
+}
+.categoryGroup{
+	margin-bottom: 5px;
+}
+.editorlabel{
+	width:70px;
+}
+	/********************************************/
+	/******* BestBug Studio Control Panel *******/
+	/********************************************/

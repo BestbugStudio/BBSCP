@@ -1,0 +1,1 @@
+<? define('ABSOLUTEPATH', dirname(__FILE__)); ?>
