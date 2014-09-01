@@ -1,0 +1,1 @@
+<div id="as" class="col-md-12 col-sx-12 container" ><p>WELCOME</p><div id="1" class="col-md-12 col-sx-1 " ><p>from bbscp - FE</p><div id="2" class="col-md-12 col-sx-1 " ><p>ciao belli :D</p>

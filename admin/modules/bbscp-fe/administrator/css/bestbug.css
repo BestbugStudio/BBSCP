@@ -1,0 +1,17 @@
+.whatAmI{
+	display: none;
+}
+#changefix{
+	display: none;
+}
+.boxOfJob{
+	width: 220px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+#scuola{
+	display: none;
+}

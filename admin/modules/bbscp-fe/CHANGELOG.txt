@@ -1,0 +1,12 @@
+CHANGELOG
+V. ALPHA 0.1.001
+	MAJOR FIX:
+		-Risolto il bug che non salvava il css nell'apposito file, ora ogni div che ha del css viene salvato nella pagina nomePagina.css
+		-Risolto il bug che impediva l'esecuzione degli script php
+		-Risolto il bug che impediva l'uso del css
+	MINOR FIX:
+		-Editata il metodono di salvataggio della pagina, ora i div sono stampati [stranamente ndt] corretti
+	NEW FEATURES:
+		-Inizio implementazione salvataggio del workspace: Al momento salva l'oggetto builder in un file nella cartella di progetto
+		-Implementato il changelog [LOL]
+		-Inizio implementazione documentazione sulle classi interfacce 
