@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `bbscp_admin_user` (
   `idUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'User id',
   `nickname` varchar(45) NOT NULL COMMENT 'nickname',
   `password` varchar(100) NOT NULL COMMENT 'password hash',
-  `fistname` varchar(100) NOT NULL COMMENT 'user firstname',
+  `firstname` varchar(100) NOT NULL COMMENT 'user firstname',
   `lastname` varchar(100) NOT NULL COMMENT 'user lastname',
   `mail` varchar(45) NOT NULL COMMENT 'user e-mail',
   `confirmed` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'account confirmed?',

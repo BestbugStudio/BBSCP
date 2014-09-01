@@ -20,13 +20,13 @@
 		public function connect(){
 			$this->DB = mysqli_connect($this->dbhost,$this->dbuser,$this->dbpwd,$this->dbname,$this->dbport);	
 			if (mysqli_connect_errno()){
-					$Error = "Errore di Connessione al DataBase: ". mysqli_connect_error();
+					$Error = '{"Status":"KO","Reason":"Errore di Connessione al DataBase || '. mysqli_connect_error().'","Err.no":"'.mysqli_connect_errno().'"}';
 					$this->toConsole($Error);
 					return false;
 			}else{
 				return true;
 			}
-			$this->Console("Connected... ".mysqli_get_host_info($link));				
+			$this->toConsole("Connected... ".mysqli_get_host_info($link));				
 		}
 
 		public function disconnect(){
@@ -38,7 +38,7 @@
 		}
 		
 		public function startQuery($Query){
-			$Result = mysqli_query($this->DB, $Query) or die(json_encode(array("Status"=>"KO","REASON"=>$Query." || ".mysqli_error($this->DB),"Err.no"=>mysqli_errno($this->DB))));
+			$Result = mysqli_query($this->DB, $Query) or die(json_encode(array("Status"=>"KO","Reason"=>$Query." || ".mysqli_error($this->DB),"Err.no"=>mysqli_errno($this->DB))));
 
 			if($Result)
 				return $Result;

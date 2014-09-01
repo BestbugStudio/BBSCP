@@ -31,7 +31,7 @@
 	
 	createFirstUser($config_info);
 	
-	redirectToAdminSection();
+	//redirectToAdminSection();
 
 
 	/* Used functions */
@@ -57,8 +57,8 @@
 	function installDatabase($config_info){
 		$Install = Install::getInstance();
 		$sqlscript = str_replace("__DBNAME__", $config_info['dbname'], file_get_contents('../config/bbscp-base-db.sql'));
+		$connection = mysqli_connect($config_info['dbhost'],$config_info['dbuser'],$config_info['dbpwd']) or die('{"Status":"KO", "Reason":"Unable to connect! || '.mysqli_error($this).'", "Err.no":"'.mysqli_errno($this).'"}');	
 
-		$connection = mysqli_connect($config_info['dbhost'],$config_info['dbuser'],$config_info['dbpwd']) or die("Unable to connect! Error: ".mysql_error());	
 		if(mysqli_multi_query($connection, $sqlscript)){
 			echo '<div class="alert alert-success text-center center-block">Database successfully created</div>';
 			mysqli_close($connection);	
@@ -68,21 +68,67 @@
 	}
 
 	function createFirstUser($config_info){
-		$DB = new Database(Install::getInstance());
-		$Q = new Query();
+		$url = 'localhost/~federicomaggi/BBSCP/install/useradd.php';
 
-		$DB->connect();
-		$query = $Q->addNewUser($config_info['nickname'],
-								$config_info['password'],
-								$config_info['firstname'],
-								$config_info['lastname'],
-								$config_info['email'],
-								0);
+		$fields = 'config_info='.$config_info;
 		
-		//$query = "SELECT * FROM bbscp_admin_user;";
-		$res=$DB->startQuery($query);
+		$ch = curl_init();
 
-		var_dump($res);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		$response = curl_exec ($ch);
+
+		echo "ehiehi:<br>";
+		var_dump($response);
+		print_r($response);
+
+		curl_close ($ch);
+
+		// SOLUZIONE CURL
+		// $fields = array(
+		// 			'__VIEWSTATE'=>urlencode($state),
+		// 			'__EVENTVALIDATION'=>urlencode($valid),
+		// 			'btnSubmit'=>urlencode('Submit'),
+		// 			'msg'=>'lol'
+		//         );
+
+		// //url-ify the data for the POST
+		// foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+		// rtrim($fields_string,'&');
+
+		// //open connection
+		// $ch = curl_init();
+
+		// //set the url, number of POST vars, POST data
+		// curl_setopt($ch,CURLOPT_URL,$url);
+		// curl_setopt($ch,CURLOPT_POST,count($fields));
+		// curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
+		// curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+
+		// echo 'there goes the result<br>';
+		// //execute post
+		// $result = curl_exec($ch);
+		// print $result;
+		
+		// SOLUZIONE NO CURL
+		// $data = array('Origin' => 'myServer', 'config_info' => $config_info);
+
+		// // use key 'http' even if you send the request to https://...
+		// $options = array(
+		//     'http' => array(
+		//         'header'  => "Content-type: application/x-www-form-urlencoded",
+		//         'method'  => 'POST',
+		//         'content' => http_build_query($data),
+		//     ),
+		// );
+		// $context  = stream_context_create($options);
+		// $result = file_get_contents($url, false, $context);
+
+		// var_dump($result);
+
 	}
 
 	function redirectToAdminSection(){
