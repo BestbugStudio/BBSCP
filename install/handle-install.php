@@ -8,6 +8,7 @@
 	include_once dirname(__FILE__).'/install.php';
 	include_once dirname(__FILE__).'/../utilities/database.php';
 	include_once dirname(__FILE__).'/../config/query.php';
+	include_once dirname(__FILE__).'/../abspath.php';
 
 	$config_info = array(
 			'sitename' => $_POST['sitename'],
@@ -68,66 +69,34 @@
 	}
 
 	function createFirstUser($config_info){
-		$url = 'localhost/~federicomaggi/BBSCP/install/useradd.php';
+		include_once dirname(__FILE__).'/useradd.php';
+		$lol = addUsr();
 
-		$fields = 'config_info='.$config_info;
+		echo $lol;
+		// $url = './useradd.php';
+		// echo $url."<br>";
 		
-		$ch = curl_init();
+		// $fieldsarray = array(
+		// 				'origin'=>'server',
+		// 				'config_info'=>json_encode($config_info)
+		// 				);
 
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-		$response = curl_exec ($ch);
-
-		echo "ehiehi:<br>";
-		var_dump($response);
-		print_r($response);
-
-		curl_close ($ch);
-
-		// SOLUZIONE CURL
-		// $fields = array(
-		// 			'__VIEWSTATE'=>urlencode($state),
-		// 			'__EVENTVALIDATION'=>urlencode($valid),
-		// 			'btnSubmit'=>urlencode('Submit'),
-		// 			'msg'=>'lol'
-		//         );
-
-		// //url-ify the data for the POST
-		// foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-		// rtrim($fields_string,'&');
-
-		// //open connection
+		// $fields = http_build_query($fieldsarray);
+		// print_r($fields);
+		
 		// $ch = curl_init();
 
-		// //set the url, number of POST vars, POST data
-		// curl_setopt($ch,CURLOPT_URL,$url);
-		// curl_setopt($ch,CURLOPT_POST,count($fields));
-		// curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
-		// curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+		// curl_setopt($ch, CURLOPT_URL, $url);
+		// curl_setopt($ch, CURLOPT_POST, true);
+		// curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-		// echo 'there goes the result<br>';
-		// //execute post
-		// $result = curl_exec($ch);
-		// print $result;
-		
-		// SOLUZIONE NO CURL
-		// $data = array('Origin' => 'myServer', 'config_info' => $config_info);
+		// $response = curl_exec($ch);
 
-		// // use key 'http' even if you send the request to https://...
-		// $options = array(
-		//     'http' => array(
-		//         'header'  => "Content-type: application/x-www-form-urlencoded",
-		//         'method'  => 'POST',
-		//         'content' => http_build_query($data),
-		//     ),
-		// );
-		// $context  = stream_context_create($options);
-		// $result = file_get_contents($url, false, $context);
+		// echo "<br><br>ehiehi:<br>";
+		// var_dump($response);
 
-		// var_dump($result);
+		// curl_close ($ch);
 
 	}
 
