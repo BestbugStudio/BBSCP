@@ -1,5 +1,8 @@
 <?
-function addUsr(){	
+	/********************************************/
+	/******* BestBug Studio Control Panel *******/
+	/********************************************/
+
 	if(isset($_POST['origin']) && $_POST['origin']=='server'){
 
 		include_once dirname(__FILE__).'/../utilities/database.php';
@@ -9,25 +12,40 @@ function addUsr(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 
-		$config_info = json_decode($_POST['config_info']);
+		$info = $_POST['config_info'];
 
-		echo $config_info;
 		$DB->connect();
-		$query = $Q->addNewUser($config_info['nickname'],
-								$config_info['password'],
-								$config_info['firstname'],
-								$config_info['lastname'],
-								$config_info['email'],
+		$query = $Q->addNewUser($info['nickname'],
+								$info['password'],
+								$info['firstname'],
+								$info['lastname'],
+								$info['email'],
 								0);
-		//$res=$DB->startQuery($query);
+		$res=$DB->startQuery($query);
+		$DB->disconnect();
 
-		echo "<br>".$query."</br>";
+		if($res == 1){
+			$response = array(
+				'Status'=>'OK',
+				'Message'=>'User successfully added'
+			);
+			return json_encode($response);
+		}
 
-		var_dump($res);
-
-
-		print_r("<br>HEY, I'm in the useradd experience</br>");
-		return "lol";
+		$response = array(
+			'Status'=>'KO',
+			'Reason'=>'Something went wrong with the query'
+		);
+		return json_encode($response);
 	}
-}
+	
+	$response = array(
+		'Status' => 'KO',
+		'Reason' => 'You tried to access from an illegal place! That\'s wrong!'
+	);
+	return json_encode($response);
+
+	/********************************************/
+	/******* BestBug Studio Control Panel *******/
+	/********************************************/
 ?>

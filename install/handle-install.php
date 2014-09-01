@@ -8,7 +8,6 @@
 	include_once dirname(__FILE__).'/install.php';
 	include_once dirname(__FILE__).'/../utilities/database.php';
 	include_once dirname(__FILE__).'/../config/query.php';
-	include_once dirname(__FILE__).'/../abspath.php';
 
 	$config_info = array(
 			'sitename' => $_POST['sitename'],
@@ -32,7 +31,7 @@
 	
 	createFirstUser($config_info);
 	
-	//redirectToAdminSection();
+	redirectToAdminSection();
 
 
 	/* Used functions */
@@ -69,39 +68,23 @@
 	}
 
 	function createFirstUser($config_info){
-		include_once dirname(__FILE__).'/useradd.php';
-		$lol = addUsr();
+		$_POST['origin'] = "server";
+		$_POST['config_info'] = $config_info;
 
-		echo $lol;
-		// $url = './useradd.php';
-		// echo $url."<br>";
-		
-		// $fieldsarray = array(
-		// 				'origin'=>'server',
-		// 				'config_info'=>json_encode($config_info)
-		// 				);
+		$jSonresponse = include './useradd.php';
 
-		// $fields = http_build_query($fieldsarray);
-		// print_r($fields);
-		
-		// $ch = curl_init();
+		$response = json_decode($jSonresponse,true);
 
-		// curl_setopt($ch, CURLOPT_URL, $url);
-		// curl_setopt($ch, CURLOPT_POST, true);
-		// curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-		// $response = curl_exec($ch);
-
-		// echo "<br><br>ehiehi:<br>";
-		// var_dump($response);
-
-		// curl_close ($ch);
+		if($response['Status'] == "OK"){
+			echo '<div class="alert alert-success text-center center-block">'.$response['Message'].'</div>';
+		}else{
+			echo'<div class="alert alert-danger text-center center-block">'.$response['Reason'].'</div>';
+		}
 
 	}
 
 	function redirectToAdminSection(){
-		die('<script>location.href="'.$_SERVER['HTTP_REFERER'].'/admin/"</script>');
+		die('<script>location.href="'.$_SERVER['HTTP_REFERER'].'admin/"</script>');
 	}
 
 	/********************************************/
