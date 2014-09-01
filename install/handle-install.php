@@ -59,16 +59,8 @@
 		$sqlscript = str_replace("__DBNAME__", $config_info['dbname'], file_get_contents('../config/bbscp-base-db.sql'));
 
 		$connection = mysqli_connect($config_info['dbhost'],$config_info['dbuser'],$config_info['dbpwd']) or die("Unable to connect! Error: ".mysql_error());	
-		if(mysqli_query($connection,'CREATE DATABASE '.$config_info['dbname'].';')){
-			echo '<div class="alert alert-success text-center center-block">Database successfully createad</div>';
-			mysqli_close($connection);	
-		}else{
-			die('<div class="alert alert-danger text-center center-block">ERROR CREATING DATABASE!</div>');
-		}
-		
-		$connection = mysqli_connect($config_info['dbhost'],$config_info['dbuser'],$config_info['dbpwd'],$config_info['dbname']) or die("Unable to connect! Error: ".mysql_error());
 		if(mysqli_multi_query($connection, $sqlscript)){
-			echo '<div class="alert alert-success text-center center-block">Database successfully imported</div>';
+			echo '<div class="alert alert-success text-center center-block">Database successfully created</div>';
 			mysqli_close($connection);	
 		}else{
 			die('<div class="alert alert-danger text-center center-block">ERROR IMPORTING DATABASE</div>');

@@ -22,10 +22,10 @@ Class Install{
 	}
 
 	public function checkInstallation(){
-			if($this->dbname == ""){
-				return json_encode(array('Status'=>'KO'));
-			}else
-				return json_encode(array('Status'=>'OK','sitename'=>$this->sitename));
+		if($this->dbname == ""){
+			return json_encode(array('Status'=>'KO'));
+		}else
+			return json_encode(array('Status'=>'OK','sitename'=>$this->sitename));
 	}
 
 	public function startInstallation(){
