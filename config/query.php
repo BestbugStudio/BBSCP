@@ -5,10 +5,6 @@
 
 class Query{
 
-	/**
-	 *	ControlPanel Queries
-	 */
-
 	public function login($nick,$pwd){
 		return "SELECT * FROM bbscp_admin_user WHERE nickname = '$nick' AND password = '$pwd';";
 	}
@@ -16,40 +12,40 @@ class Query{
 	/*** Get ***/
 
 		/*** Menus ***/
-		public function getAdminMenu(){
-			return "SELECT idMenu, menu_title, static, category, submenu_of FROM bbscp_admin_menu;";
-		}
-		public function getAdminMenuFromId($id){
-			return "SELECT idMenu, menu_title, static, category, submenu_of FROM bbscp_admin_menu WHERE idMenu = $id;";
-		}
-		public function getSiteMenu(){
-			return "SELECT idMenu, menu_title, static, category, submenu_of FROM site_menu;";
-		}
-		public function getSiteMenuFromId($id){
-			return "SELECT idMenu, menu_title, static, category, submenu_of FROM site_menu WHERE idMenu = $id;";
-		}
+		// public function getAdminMenu(){
+		// 	return "SELECT idMenu, menu_title, static, category, submenu_of FROM bbscp_admin_menu;";
+		// }
+		// public function getAdminMenuFromId($id){
+		// 	return "SELECT idMenu, menu_title, static, category, submenu_of FROM bbscp_admin_menu WHERE idMenu = $id;";
+		// }
+		// public function getSiteMenu(){
+		// 	return "SELECT idMenu, menu_title, static, category, submenu_of FROM site_menu;";
+		// }
+		// public function getSiteMenuFromId($id){
+		// 	return "SELECT idMenu, menu_title, static, category, submenu_of FROM site_menu WHERE idMenu = $id;";
+		// }
 
 		/*** articles ***/
-		public function getAllarticlesInfo(){
-			return "SELECT idArticle, title, category, pubdate, featured_image, featured_link FROM articles;";
-		}
-		public function getArticleFromId($id){
-			return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE idArticle = $id ORDER BY pubdate DESC;";
-		}
-		public function getAllarticlesFromCategory($cat){
-			return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE category=$cat ORDER BY pubdate DESC;";
-		}
+		// public function getAllarticlesInfo(){
+		// 	return "SELECT idArticle, title, category, pubdate, featured_image, featured_link FROM articles;";
+		// }
+		// public function getArticleFromId($id){
+		// 	return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE idArticle = $id ORDER BY pubdate DESC;";
+		// }
+		// public function getAllarticlesFromCategory($cat){
+		// 	return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE category=$cat ORDER BY pubdate DESC;";
+		// }
 
 		/*** categories ***/
-		public function getcategories(){
-			return "SELECT idCategory, category_name FROM categories;";
-		}
-		public function getCategoryFromId($id){
-			return "SELECT idCategory, category_name FROM categories WHERE idCategory = $id;";
-		}
+		// public function getcategories(){
+		// 	return "SELECT idCategory, category_name FROM categories;";
+		// }
+		// public function getCategoryFromId($id){
+		// 	return "SELECT idCategory, category_name FROM categories WHERE idCategory = $id;";
+		// }
 
 		/*** Users ***/
-		public function getUsers(){
+		public function getAllUsers(){
 			return "SELECT idUser, nickname, mail, confirmed FROM bbscp_admin_user;";
 		}
 		public function getUserFromId($id){
@@ -88,7 +84,12 @@ class Query{
 	// public function updateMenu($id,$menu_title,$category,$static,$submenu_of){
 	// 	return "UPDATE site_menu SET menu_title='$menu_title', category=$category, static=$static, submenu_of=$submenu_of WHERE idMenu=$id;";
 	// }
-	public function updateUser(){}
+	public function updateUser($id, $nickname, $password, $firstname,$lastname,$mail){
+		return "UPDATE bbscp_admin_user SET nickname='$nickname', $password='$password', firstname='$firstname', lastname='$lastname', mail='$mail' WHERE idUser=$id;";
+	}
+	public function updateUserSetConfirmed($id, $conf){
+		return "UPDATE bbscp_admin_user SET confirmed=$conf WHERE idUser=$id;";
+	}
 
 	/*** Delete ***/
 	// public function deleteArticle($id){
@@ -100,7 +101,9 @@ class Query{
 	// public function deleteMenu($id){
 	// 	return "DELETE FROM site_menu WHERE idMenu=$id;";
 	// }
-	public function deleteuser($id){}
+	public function deleteuser($id){
+		return "DELETE FROM bbscp_admin_user WHERE idUser=$id;";
+	}
 
 }
 

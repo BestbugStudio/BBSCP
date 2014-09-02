@@ -4,7 +4,7 @@
 	/********************************************/
 
 	interface modelinterface{
-		public function getData();
+		public function getObjectData();
 		public function getId();
 		public function getFromId($id);
 		public function addNewData($OBJINSTANCE);

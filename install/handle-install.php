@@ -71,15 +71,34 @@
 		$_POST['origin'] = "server";
 		$_POST['config_info'] = $config_info;
 
-		$jSonresponse = include './useradd.php';
+		//$jSonresponse = include './useradd.php';
 
-		$response = json_decode($jSonresponse,true);
+		include_once dirname(__FILE__).'/../models/User.php';
 
-		if($response['Status'] == "OK"){
-			echo '<div class="alert alert-success text-center center-block">'.$response['Message'].'</div>';
-		}else{
-			echo'<div class="alert alert-danger text-center center-block">'.$response['Reason'].'</div>';
-		}
+
+		$DB = new Database(Install::getInstance());
+		$Q = new Query();
+		
+		$info = $_POST['config_info'];
+		$User = new User(-1,
+						 $info['nickname'],
+						 $info['password'],
+						 $info['firstname'],
+						 $info['lastname'],
+						 $info['email'],
+						 0);
+
+		$res = $User->addNewData($User);
+
+
+
+		// $response = json_decode($jSonresponse,true);
+
+		// if($response['Status'] == "OK"){
+		// 	echo '<div class="alert alert-success text-center center-block">'.$response['Message'].'</div>';
+		// }else{
+		// 	echo'<div class="alert alert-danger text-center center-block">'.$response['Reason'].'</div>';
+		// }
 
 	}
 

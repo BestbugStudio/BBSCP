@@ -1,5 +1,4 @@
 <?
-
 	/********************************************/
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
@@ -20,7 +19,7 @@ Class User implements modelinterface{
 		$this->confirmed = $confirmed;
 	}
 
-	public function getData(){
+	public function getObjectData(){
 		return json_encode(array(
 				'id'		=> $this->id,
 				'nickname'	=> $this->nickname,
@@ -37,7 +36,7 @@ Class User implements modelinterface{
 	}
 
 	public function getFromId($id){
-		return 'asd';
+		return 'TODO';
 	}
 
 	public function addNewData($User){
@@ -45,10 +44,10 @@ Class User implements modelinterface{
 		$Q = new Query();
 		$DB->connect();
 
-		$res = $DB->startQuery($Q->addNewUser($User->nickname,$User->password,$User->firstname,$User->lastname,$User->mail,$User->confirmed));
+		$result = $DB->startQuery($Q->addNewUser($User->nickname,$User->password,$User->firstname,$User->lastname,$User->mail,$User->confirmed));
 
 		$DB->disconnect();
-		return $res;
+		return $result;
 	}
 
 	public function updateData($User){
