@@ -9,10 +9,11 @@
 	header("Pragma: no-cache"); 
 	header("Expires: 0");
 
-	include_once dirname(__FILE__).'/../utilites/install.php';
-	include_once dirname(__FILE__).'/utilites/login.php';
-	include_once dirname(__FILE__).'/../utilites/database.php';
-	include_once dirname(__FILE__).'/../config/query.php';
+	include_once dirname(__FILE__).'/../abspath.php';
+	include_once ABSOLUTEPATH.'/install/install.php';
+	include_once ABSOLUTEPATH.'/admin/utilities/login.php';
+	include_once ABSOLUTEPATH.'/utilities/database.php';
+	include_once ABSOLUTEPATH.'/config/query.php';
 
 	/* Login Title */
 	echo '<head><title>BestBug Studio Control Panel</title>';

@@ -3,9 +3,7 @@
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
 
-	include_once dirname(__FILE__).'/../../mainconfig/query.php';
-	include_once dirname(__FILE__).'/../../mainconfig/database.php';
-	include_once dirname(__FILE__).'/../class/Main.php';
+	include_once dirname(__FILE__).'/utilities/main.php';
 
 	class Login{
 
@@ -46,14 +44,14 @@
 		}
 
 		public function loginhandler(){
-			$this->DB->Connect();
+			$this->DB->connect();
 
-			$username = $this->DB->Sanitize($_POST['username']);
-			$password = $this->DB->Sanitize($_POST['password']);
+			$username = $this->DB->sanitize($_POST['username']);
+			$password = $this->DB->sanitize($_POST['password']);
  			
 			$logQuery = $this->Q->login($username,sha1($password));
-			$result = $this->DB->StartQuery($logQuery);
-			$result = $this->DB->ResultQuery($result);
+			$result = $this->DB->startQuery($logQuery);
+			$result = $this->DB->returnFirstRow($result);
 
 			if($result != ""){
 				$_SESSION['access'] = session_id();
@@ -69,7 +67,8 @@
 		}
 
 		private function mainCallback(){
-			$Main = new Main($this->DB, $this->Q);
+			//$Main = new Main($this->DB, $this->Q);
+			echo "LOGGATO! :D";
 		}
 	}
 
