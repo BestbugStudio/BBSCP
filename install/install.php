@@ -39,7 +39,7 @@ Class Install{
 				<br><br>
 				<div class="row">
 					<div class="col-md-offset-3 col-md-6 col-xs-12" style="border-radius:5px; border:1px solid black; background-color: #aa6600; ">
-						<form role="form" id="installationform" action="install/handle-install.php" method="post">
+						<form role="form" id="installationform" action="install/createdatabase.php" method="post">
 						<br>
 							<div class="text-center"><strong>Site information</strong></div>
 

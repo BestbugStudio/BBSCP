@@ -44,10 +44,24 @@ Class User implements modelinterface{
 		$Q = new Query();
 		$DB->connect();
 
-		$result = $DB->startQuery($Q->addNewUser($User->nickname,$User->password,$User->firstname,$User->lastname,$User->mail,$User->confirmed));
+		$res = $DB->startQuery($Q->addNewUser($User->nickname,$User->password,$User->firstname,$User->lastname,$User->mail,$User->confirmed));
 
 		$DB->disconnect();
-		return $result;
+
+		if($res == 1){
+			$response = array(
+				'Status'=>'OK',
+				'Message'=>'User successfully added'
+			);
+			return json_encode($response);
+		}
+
+		$response = array(
+			'Status'=>'KO',
+			'Reason'=>'Something went wrong with the query'
+		);
+		return json_encode($response);
+
 	}
 
 	public function updateData($User){
