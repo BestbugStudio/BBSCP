@@ -19,6 +19,7 @@
 		);
 
 	createFirstUser($user_info);
+	sendconfirmmail($user_info);
 	redirectToAdminSection();
 
 	function createFirstUser($user_info){
@@ -46,6 +47,10 @@
 		}else{
 			echo '<div class="alert alert-danger text-center center-block">'.$response['Reason'].'</div>';
 		}
+	}
+
+	function sendconfirmmail($user_info){
+		//TODO
 	}
 
 	function redirectToAdminSection(){
