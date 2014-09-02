@@ -18,17 +18,6 @@
 			'dbport'   => $_POST['dbport']
 		);
 
-	// $user_info = array(
-	// 		'firstname'=> $_POST['firstname'],
-	// 		'lastname' => $_POST['lastname'],
-	// 		'nickname' => $_POST['nickname'],
-	// 		'password' => sha1($_POST['password']),
-	// 		'email'	   => $_POST['email']
-	// 	);
-
-	var_dump($config_info);
-	// var_dump($user_info);
-
 	saveDataInConfigXML($config_info);
 	installDatabase($config_info);
 	redirectToUserForm();
