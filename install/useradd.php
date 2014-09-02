@@ -8,21 +8,22 @@
 		include_once dirname(__FILE__).'/../utilities/database.php';
 		include_once dirname(__FILE__).'/../install/install.php';
 		include_once dirname(__FILE__).'/../config/query.php';
+		include_once dirname(__FILE__).'/../models/User.php';
+
 
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
-
+		
 		$info = $_POST['config_info'];
+		$User = new User(-1,
+						 $info['nickname'],
+						 $info['password'],
+						 $info['firstname'],
+						 $info['lastname'],
+						 $info['email'],
+						 0);
 
-		$DB->connect();
-		$query = $Q->addNewUser($info['nickname'],
-								$info['password'],
-								$info['firstname'],
-								$info['lastname'],
-								$info['email'],
-								0);
-		$res=$DB->startQuery($query);
-		$DB->disconnect();
+		$res = $User->addNewData($User);
 
 		if($res == 1){
 			$response = array(

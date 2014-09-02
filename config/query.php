@@ -59,47 +59,47 @@ class Query{
 
 	/*** Add ***/
 
-	public function addNewArticle($title,$content,$category,$pubdate,$ftimg, $link){
-		if($ftimg == ""){
-			$ftimg="defaultimage.jpg";
-		}
-		return "INSERT INTO articles (title,content,category,pubdate,featured_image, featured_link) VALUES ('$title','$content','$category','$pubdate','$ftimg','$link');";
-	}
-	public function addNewCategory($category_name){
-		return "INSERT INTO categories (category_name) VALUES ('$category_name');";
-	}
-	public function addNewMenu($menu_title,$category,$static, $submenu_of){
-		return "INSERT INTO site_menu (menu_title,category,static,submenu_of) VALUES ('$menu_title',$category,$static,$submenu_of);";
-	}
+	// public function addNewArticle($title,$content,$category,$pubdate,$ftimg, $link){
+	// 	if($ftimg == ""){
+	// 		$ftimg="defaultimage.jpg";
+	// 	}
+	// 	return "INSERT INTO articles (title,content,category,pubdate,featured_image, featured_link) VALUES ('$title','$content','$category','$pubdate','$ftimg','$link');";
+	// }
+	// public function addNewCategory($category_name){
+	// 	return "INSERT INTO categories (category_name) VALUES ('$category_name');";
+	// }
+	// public function addNewMenu($menu_title,$category,$static, $submenu_of){
+	// 	return "INSERT INTO site_menu (menu_title,category,static,submenu_of) VALUES ('$menu_title',$category,$static,$submenu_of);";
+	// }
 	public function addNewUser($nickname,$password,$firstname,$lastname,$mail,$confirmed){
 		return "INSERT INTO bbscp_admin_user (nickname,password,firstname,lastname,mail,confirmed) VALUES ('$nickname','$password','$firstname','$lastname','$mail',$confirmed);";
 	}
 
 	/*** Update ***/
-	public function updateArticle($id,$title,$content,$category,$pubdate,$ftimg, $link){
-		if($ftimg != "")
-			return "UPDATE articles SET title='$title',content='$content',category=$category,pubdate='$pubdate',featured_image='$ftimg',featured_link='$link' WHERE idArticle=$id;";
-		else
-			return "UPDATE articles SET title='$title',content='$content',category=$category,pubdate='$pubdate',featured_link='$link' WHERE idArticle=$id;";
-	}
-	public function updateCategory($id,$category_name){
-		return "UPDATE categories SET category_name='$category_name' WHERE idCategory=$id;";
-	}
-	public function updateMenu($id,$menu_title,$category,$static,$submenu_of){
-		return "UPDATE site_menu SET menu_title='$menu_title', category=$category, static=$static, submenu_of=$submenu_of WHERE idMenu=$id;";
-	}
+	// public function updateArticle($id,$title,$content,$category,$pubdate,$ftimg, $link){
+	// 	if($ftimg != "")
+	// 		return "UPDATE articles SET title='$title',content='$content',category=$category,pubdate='$pubdate',featured_image='$ftimg',featured_link='$link' WHERE idArticle=$id;";
+	// 	else
+	// 		return "UPDATE articles SET title='$title',content='$content',category=$category,pubdate='$pubdate',featured_link='$link' WHERE idArticle=$id;";
+	// }
+	// public function updateCategory($id,$category_name){
+	// 	return "UPDATE categories SET category_name='$category_name' WHERE idCategory=$id;";
+	// }
+	// public function updateMenu($id,$menu_title,$category,$static,$submenu_of){
+	// 	return "UPDATE site_menu SET menu_title='$menu_title', category=$category, static=$static, submenu_of=$submenu_of WHERE idMenu=$id;";
+	// }
 	public function updateUser(){}
 
 	/*** Delete ***/
-	public function deleteArticle($id){
-		return "DELETE FROM articles WHERE idArticle=$id;";
-	}
-	public function deleteCategory($id){
-		return "DELETE FROM categories WHERE idCategory=$id;";
-	}
-	public function deleteMenu($id){
-		return "DELETE FROM site_menu WHERE idMenu=$id;";
-	}
+	// public function deleteArticle($id){
+	// 	return "DELETE FROM articles WHERE idArticle=$id;";
+	// }
+	// public function deleteCategory($id){
+	// 	return "DELETE FROM categories WHERE idCategory=$id;";
+	// }
+	// public function deleteMenu($id){
+	// 	return "DELETE FROM site_menu WHERE idMenu=$id;";
+	// }
 	public function deleteuser($id){}
 
 }
