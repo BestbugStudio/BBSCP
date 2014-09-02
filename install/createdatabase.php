@@ -18,20 +18,20 @@
 			'dbport'   => $_POST['dbport']
 		);
 
-	$user_info = array(
-			'firstname'=> $_POST['firstname'],
-			'lastname' => $_POST['lastname'],
-			'nickname' => $_POST['nickname'],
-			'password' => sha1($_POST['password']),
-			'email'	   => $_POST['email']
-		);
+	// $user_info = array(
+	// 		'firstname'=> $_POST['firstname'],
+	// 		'lastname' => $_POST['lastname'],
+	// 		'nickname' => $_POST['nickname'],
+	// 		'password' => sha1($_POST['password']),
+	// 		'email'	   => $_POST['email']
+	// 	);
 
 	var_dump($config_info);
-	var_dump($user_info);
+	// var_dump($user_info);
 
 	saveDataInConfigXML($config_info);
 	installDatabase($config_info);
-	redirectToUserAdd($user_info);
+	redirectToUserForm();
 
 
 	/* Used functions */
@@ -67,14 +67,8 @@
 		}
 	}
 
-	function redirectToUserAdd($user_info){
-		$configGetString = 'firstname='.$user_info['firstname'].
-							'&lastname='.$user_info['lastname'].
-							'&nickname='.$user_info['nickname'].
-							'&password='.$user_info['password'].
-							'&email='.$user_info['email'];
-
-		die('<script>location.href="'.$_SERVER['HTTP_REFERER'].'install/useradd.php?'.$configGetString.'"</script>');
+	function redirectToUserForm($user_info){
+		die('<script>location.href="'.$_SERVER['HTTP_REFERER'].'install/userform.html"</script>');
 	}	
 
 	/********************************************/

@@ -61,23 +61,14 @@ Class User implements modelinterface{
 			'Reason'=>'Something went wrong with the query'
 		);
 		return json_encode($response);
-
 	}
 
 	public function updateData($User){
-		$DB = new Database();
-		$Q = new Query();
-		$DB->Connect();
-
-		$DB->StartQuery($Q->updateMenu($Menu->id,$Menu->menu_title,$Menu->menu_category,$Menu->staticCheck,$Menu->submenu_of));
+		return 'TODO';
 	}
 
 	public function deleteData($User){
-		$DB = new Database();
-		$Q = new Query();
-		$DB->Connect();
-
-		$DB->StartQuery($Q->deleteMenu($Menu->id));
+		return 'TODO';
 	}
 
 }

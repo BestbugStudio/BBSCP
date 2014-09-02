@@ -15,6 +15,7 @@
 
 
 ?>
+	<!DOCTYPE html>
 	<head>
 <?	/* Stylesheets */ ?>
 		<link rel="stylesheet" type="text/css" href="./framework/bootstrap/css/bootstrap.min.css"/>

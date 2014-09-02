@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>BBSCP || STEP 2</title>
+
+		<link rel="stylesheet" type="text/css" href="./../framework/bootstrap/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="./../framework/jQuery/css/jQuery-UI.min.css"/>
+		<link rel="stylesheet" type="text/css" href="./../style/default_theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="./../framework/datetime-picker/jquery.datetimepicker.css"/>
+	</head>
+	<body>
+		<section id="present">
+			<div class="row">
+				<div class="text-center">
+					<br><strong>STEP 2</strong><br>This is the last step!<br>You just need to create a user to access the admin panel<br>
+				</div>
+			</div>
+		</section>
+		<br><br>
+		<section id="databaseform">
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6 col-xs-12" style="border-radius:5px; border:1px solid black; background-color: #aa6600; ">				
+					<form role="form" id="personalform" action="useradd.php" method="post">
+						<div class="text-center"><strong>Personal information</strong></div>
+						
+						<div class="form-group col-md-6 col-xs-12">
+							<label for="firstname">First Name</label>
+							<input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name">
+						</div>
+
+						<div class="form-group col-md-6 col-xs-12">
+							<label for="lastname">Last Name</label>
+							<input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name">
+						</div>
+
+						<div class="form-group col-md-12 col-xs-12">
+							<label for="nickname">Nickname</label>
+							<input type="text" class="form-control" name="nickname" id="nickname" placeholder="Nickname">
+						</div>
+
+						<div class="form-group col-md-6 col-xs-12">
+							<label for="password">Password</label>
+							<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+						</div>
+
+						<div class="form-group col-md-6 col-xs-12">
+							<label for="repeat-password">Repeat password</label>
+							<input type="password" class="form-control" id="repeat-password" placeholder="Repeat password">
+						</div>
+
+						<div class="form-group col-md-12 col-xs-12">
+							<label for="email">Email address</label>
+							<input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+						</div>
+
+						<button type="submit" class="btn btn-default center-block" style="background-color:#C67171;color:black"><strong>ADD USER!</strong></button>
+
+					</form>
+					<br>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>
