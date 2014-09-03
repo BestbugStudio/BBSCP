@@ -4,6 +4,7 @@
 	/********************************************/
 
 require dirname(__FILE__).'/modelinterface.php';
+include_once dirname(__FILE__).'/responseFunction.php';
 
 Class User implements modelinterface{
 
@@ -36,7 +37,16 @@ Class User implements modelinterface{
 	}
 
 	public function getFromId($id){
-		return 'TODO';
+		$DB = new Database(Install::getInstance());
+		$Q = new Query();
+		$DB->connect();
+
+		$res = $DB->startQuery($Q->getUserFromId($id));
+		$res = $DB->returnFirstRow($res);
+
+		$DB->disconnect();
+
+		sendResponse('Here\'s the user you asked for','No user found',$res,false);
 	}
 
 	public function addNewData($User){
@@ -48,29 +58,24 @@ Class User implements modelinterface{
 
 		$DB->disconnect();
 
-		if($res == 1){
-			$response = array(
-				'Status'=>'OK',
-				'Message'=>'User successfully added'
-			);
-			return json_encode($response);
-		}
-
-		$response = array(
-			'Status'=>'KO',
-			'Reason'=>'Something went wrong with the query'
-		);
-		return json_encode($response);
+		sendResponse('User successfully added','Something went wrong with the query',null,true)
 	}
 
 	public function updateData($User){
-		return 'TODO';
+		$DB = new Database(Install::getInstance());
+		$Q = new Query();
+		$DB->connect();
+
+		$res = $DB->startQuery($Q->updateUser($User->id,$User->nickname,$User->password,$User->firstname,$User->lastname,$User->mail,$User->confirmed));
+
+		sendResponse('User info successfully update','Something went wrong, check the information you provided',null,true);
+
+		$DB->disconnect();
 	}
 
 	public function deleteData($User){
-		return 'TODO';
-	}
 
+	}
 }
 	/********************************************/
 	/******* BestBug Studio Control Panel *******/

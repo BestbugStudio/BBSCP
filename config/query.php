@@ -9,6 +9,29 @@ class Query{
 		return "SELECT * FROM bbscp_admin_user WHERE nickname = '$nick' AND password = '$pwd';";
 	}
 
+	/*** USER QUERIES ***/
+	public function addNewUser($nickname,$password,$firstname,$lastname,$mail,$confirmed){
+		return "INSERT INTO bbscp_admin_user (nickname,password,firstname,lastname,mail,confirmed) VALUES ('$nickname','$password','$firstname','$lastname','$mail',$confirmed);";
+	}
+	public function getAllUsers(){
+		return "SELECT idUser, nickname, mail, confirmed FROM bbscp_admin_user;";
+	}
+	public function getUserFromId($id){
+		return "SELECT idUser, nickname, mail, confirmed FROM bbscp_admin_user WHERE idUser = $id;";
+	}
+	public function updateUser($id, $nickname, $password, $firstname,$lastname,$mail){
+		return "UPDATE bbscp_admin_user SET nickname='$nickname', $password='$password', firstname='$firstname', lastname='$lastname', mail='$mail' WHERE idUser=$id;";
+	}
+	public function updateUserSetConfirmed($id, $conf){
+		return "UPDATE bbscp_admin_user SET confirmed=$conf WHERE idUser=$id;";
+	}
+	public function deleteuser($id){
+		return "DELETE FROM bbscp_admin_user WHERE idUser=$id;";
+	}
+
+
+
+
 	/*** Get ***/
 
 		/*** Menus ***/
@@ -45,12 +68,7 @@ class Query{
 		// }
 
 		/*** Users ***/
-		public function getAllUsers(){
-			return "SELECT idUser, nickname, mail, confirmed FROM bbscp_admin_user;";
-		}
-		public function getUserFromId($id){
-			return "SELECT idUser, nickname, mail, confirmed FROM bbscp_admin_user WHERE idUser = $id;";
-		}
+		
 
 
 	/*** Add ***/
@@ -67,9 +85,6 @@ class Query{
 	// public function addNewMenu($menu_title,$category,$static, $submenu_of){
 	// 	return "INSERT INTO site_menu (menu_title,category,static,submenu_of) VALUES ('$menu_title',$category,$static,$submenu_of);";
 	// }
-	public function addNewUser($nickname,$password,$firstname,$lastname,$mail,$confirmed){
-		return "INSERT INTO bbscp_admin_user (nickname,password,firstname,lastname,mail,confirmed) VALUES ('$nickname','$password','$firstname','$lastname','$mail',$confirmed);";
-	}
 
 	/*** Update ***/
 	// public function updateArticle($id,$title,$content,$category,$pubdate,$ftimg, $link){
@@ -84,12 +99,7 @@ class Query{
 	// public function updateMenu($id,$menu_title,$category,$static,$submenu_of){
 	// 	return "UPDATE site_menu SET menu_title='$menu_title', category=$category, static=$static, submenu_of=$submenu_of WHERE idMenu=$id;";
 	// }
-	public function updateUser($id, $nickname, $password, $firstname,$lastname,$mail){
-		return "UPDATE bbscp_admin_user SET nickname='$nickname', $password='$password', firstname='$firstname', lastname='$lastname', mail='$mail' WHERE idUser=$id;";
-	}
-	public function updateUserSetConfirmed($id, $conf){
-		return "UPDATE bbscp_admin_user SET confirmed=$conf WHERE idUser=$id;";
-	}
+
 
 	/*** Delete ***/
 	// public function deleteArticle($id){
@@ -101,9 +111,7 @@ class Query{
 	// public function deleteMenu($id){
 	// 	return "DELETE FROM site_menu WHERE idMenu=$id;";
 	// }
-	public function deleteuser($id){
-		return "DELETE FROM bbscp_admin_user WHERE idUser=$id;";
-	}
+	
 
 }
 
