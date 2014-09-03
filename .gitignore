@@ -1,5 +1,4 @@
-# Files to ignore
-config/mainconfig.xml
+/config/mainconfig.xml
 
 
 # Mac hidden files
