@@ -41,16 +41,7 @@ A custom module must have
 
 index.php will attempt a connection to the database and start the installation routine, it will
 
-* ask for:
-	* Site name --> it will be saved in /config/mainconfig.xml
-	* Firstname --> it will be saved in the database
-	* Lastname  --> it will be saved in the database
-	* email     --> it will be saved in the database
-	* Nickname  --> it will be saved in the database
-	* database name --> it will be saved in the /config/mainconfig.xml
-	* database password --> it will be saved in the /config/mainconfig.xml
-	* database host --> it will be saved in the /config/mainconfig.xml
-	* database port --> it will be saved in the /config/mainconfig.xml
+* ask for some informations
 
 * Install the database and create the first user
 
