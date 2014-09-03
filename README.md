@@ -42,11 +42,8 @@ A custom module must have
 index.php will attempt a connection to the database and start the installation routine, it will
 
 * ask for some informations
-
 * Install the database and create the first user
-
 * Redirect to /admin/index.php
-
 
 
 ---
