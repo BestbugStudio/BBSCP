@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <sitename/>
+  <sitename></sitename>
   <dbproperties>
-    <dbname/>
-    <dbuser/>
-    <dbpwd/>
+    <dbname></dbname>
+    <dbuser></dbuser>
+    <dbpwd></dbpwd>
     <dbaddr>
-      <dbhost/>
-      <dbport/>
+      <dbhost></dbhost>
+      <dbport></dbport>
     </dbaddr>
   </dbproperties>
 </items>
