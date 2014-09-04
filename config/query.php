@@ -55,10 +55,21 @@ class Query{
 		return "DELETE FROM articles WHERE idArticle=$id;";
 	}
 
+	/*** CATEGORIE QUERIES ***/
+	public function getCategoryFromId($id){
+		return "SELECT idCategory, category_name FROM categories WHERE idCategory = $id;";
+	}
+	public function getAllCategories(){
+		return "SELECT idCategory, category_name FROM categories;";
+	}
+	public function addNewCategory($category_name){
+		return "INSERT INTO categories (category_name) VALUES ('$category_name');";
+	}
+	public function deleteCategory($id){
+		return "DELETE FROM categories WHERE idCategory=$id;";
+	}
 
-
-
-
+	
 	/*** Get ***/
 
 		/*** Menus ***/
@@ -79,12 +90,7 @@ class Query{
 		
 
 		/*** categories ***/
-		// public function getcategories(){
-		// 	return "SELECT idCategory, category_name FROM categories;";
-		// }
-		// public function getCategoryFromId($id){
-		// 	return "SELECT idCategory, category_name FROM categories WHERE idCategory = $id;";
-		// }
+		
 
 		/*** Users ***/
 		
@@ -93,9 +99,7 @@ class Query{
 	/*** Add ***/
 
 	
-	// public function addNewCategory($category_name){
-	// 	return "INSERT INTO categories (category_name) VALUES ('$category_name');";
-	// }
+	
 	// public function addNewMenu($menu_title,$category,$static, $submenu_of){
 	// 	return "INSERT INTO site_menu (menu_title,category,static,submenu_of) VALUES ('$menu_title',$category,$static,$submenu_of);";
 	// }
@@ -112,9 +116,7 @@ class Query{
 
 	/*** Delete ***/
 	
-	// public function deleteCategory($id){
-	// 	return "DELETE FROM categories WHERE idCategory=$id;";
-	// }
+	
 	// public function deleteMenu($id){
 	// 	return "DELETE FROM site_menu WHERE idMenu=$id;";
 	// }
