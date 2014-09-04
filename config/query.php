@@ -25,7 +25,7 @@ class Query{
 	public function updateUserSetConfirmed($id, $conf){
 		return "UPDATE bbscp_admin_user SET confirmed=$conf WHERE idUser=$id;";
 	}
-	public function deleteuser($id){
+	public function deleteUser($id){
 		return "DELETE FROM bbscp_admin_user WHERE idUser=$id;";
 	}
 

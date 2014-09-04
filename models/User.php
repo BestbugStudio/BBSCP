@@ -74,7 +74,15 @@ Class User implements modelinterface{
 	}
 
 	public function deleteData($User){
+		$DB = new Database(Install::getInstance());
+		$Q = new Query();
+		$DB->connect();
 
+		$res = $DB->startQuery($Q->deleteUser($User->id));
+
+		sendResponse('User deleted successfully','Something went wrong while deleting the user',null,true);
+
+		$DB->disconnect();
 	}
 }
 	/********************************************/
