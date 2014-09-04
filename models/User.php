@@ -45,8 +45,19 @@ Class User implements modelinterface{
 		$res = $DB->returnFirstRow($res);
 
 		$DB->disconnect();
-
 		sendResponse('Here\'s the user you asked for','No user found',$res,false);
+	}
+
+	public function getAllData(){
+		$DB = new Database(Install::getInstance());
+		$Q = new Query;
+		$DB-> connect();
+
+		$res = $DB->startQuery($Q->getAllUsers());
+		$res = $DB->returnAllRows($res);
+
+		$DB->disconnect();
+		sendResponse('Users found','No users found',$res,false);
 	}
 
 	public function addNewData($User){
@@ -57,8 +68,7 @@ Class User implements modelinterface{
 		$res = $DB->startQuery($Q->addNewUser($User->nickname,$User->password,$User->firstname,$User->lastname,$User->mail,$User->confirmed));
 
 		$DB->disconnect();
-
-		sendResponse('User successfully added','Something went wrong with the query',null,true)
+		sendResponse('User successfully added','Something went wrong with the query',null,true);
 	}
 
 	public function updateData($User){
@@ -68,9 +78,8 @@ Class User implements modelinterface{
 
 		$res = $DB->startQuery($Q->updateUser($User->id,$User->nickname,$User->password,$User->firstname,$User->lastname,$User->mail,$User->confirmed));
 
-		sendResponse('User info successfully update','Something went wrong, check the information you provided',null,true);
-
 		$DB->disconnect();
+		sendResponse('User info successfully update','Something went wrong, check the information you provided',null,true);
 	}
 
 	public function deleteData($User){
@@ -80,9 +89,8 @@ Class User implements modelinterface{
 
 		$res = $DB->startQuery($Q->deleteUser($User->id));
 
-		sendResponse('User deleted successfully','Something went wrong while deleting the user',null,true);
-
 		$DB->disconnect();
+		sendResponse('User deleted successfully','Something went wrong while deleting the user',null,true);
 	}
 }
 	/********************************************/

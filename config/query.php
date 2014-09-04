@@ -29,6 +29,33 @@ class Query{
 		return "DELETE FROM bbscp_admin_user WHERE idUser=$id;";
 	}
 
+	/*** ARTICLE QUERIES ***/
+	public function getArticleFromId($id){
+		return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE idArticle = $id ORDER BY pubdate DESC;";
+	}
+	public function getAllarticlesInfo(){
+		return "SELECT idArticle, title, category, pubdate, featured_image, featured_link FROM articles;";
+	}
+	public function getArticlesFromCategory($cat){
+		return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE category=$cat ORDER BY pubdate DESC;";
+	}
+	public function addNewArticle($title,$content,$category,$pubdate,$ftimg, $link){
+		if($ftimg == ""){
+			$ftimg="defaultimage.jpg";
+		}
+		return "INSERT INTO articles (title,content,category,pubdate,featured_image, featured_link) VALUES ('$title','$content','$category','$pubdate','$ftimg','$link');";
+	}
+	public function updateArticle($id,$title,$content,$category,$pubdate,$ftimg, $link){
+		if($ftimg != "")
+			return "UPDATE articles SET title='$title',content='$content',category=$category,pubdate='$pubdate',featured_image='$ftimg',featured_link='$link' WHERE idArticle=$id;";
+		else
+			return "UPDATE articles SET title='$title',content='$content',category=$category,pubdate='$pubdate',featured_link='$link' WHERE idArticle=$id;";
+	}
+	public function deleteArticle($id){
+		return "DELETE FROM articles WHERE idArticle=$id;";
+	}
+
+
 
 
 
@@ -49,15 +76,7 @@ class Query{
 		// }
 
 		/*** articles ***/
-		// public function getAllarticlesInfo(){
-		// 	return "SELECT idArticle, title, category, pubdate, featured_image, featured_link FROM articles;";
-		// }
-		// public function getArticleFromId($id){
-		// 	return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE idArticle = $id ORDER BY pubdate DESC;";
-		// }
-		// public function getAllarticlesFromCategory($cat){
-		// 	return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE category=$cat ORDER BY pubdate DESC;";
-		// }
+		
 
 		/*** categories ***/
 		// public function getcategories(){
@@ -73,12 +92,7 @@ class Query{
 
 	/*** Add ***/
 
-	// public function addNewArticle($title,$content,$category,$pubdate,$ftimg, $link){
-	// 	if($ftimg == ""){
-	// 		$ftimg="defaultimage.jpg";
-	// 	}
-	// 	return "INSERT INTO articles (title,content,category,pubdate,featured_image, featured_link) VALUES ('$title','$content','$category','$pubdate','$ftimg','$link');";
-	// }
+	
 	// public function addNewCategory($category_name){
 	// 	return "INSERT INTO categories (category_name) VALUES ('$category_name');";
 	// }
@@ -87,12 +101,7 @@ class Query{
 	// }
 
 	/*** Update ***/
-	// public function updateArticle($id,$title,$content,$category,$pubdate,$ftimg, $link){
-	// 	if($ftimg != "")
-	// 		return "UPDATE articles SET title='$title',content='$content',category=$category,pubdate='$pubdate',featured_image='$ftimg',featured_link='$link' WHERE idArticle=$id;";
-	// 	else
-	// 		return "UPDATE articles SET title='$title',content='$content',category=$category,pubdate='$pubdate',featured_link='$link' WHERE idArticle=$id;";
-	// }
+	
 	// public function updateCategory($id,$category_name){
 	// 	return "UPDATE categories SET category_name='$category_name' WHERE idCategory=$id;";
 	// }
@@ -102,9 +111,7 @@ class Query{
 
 
 	/*** Delete ***/
-	// public function deleteArticle($id){
-	// 	return "DELETE FROM articles WHERE idArticle=$id;";
-	// }
+	
 	// public function deleteCategory($id){
 	// 	return "DELETE FROM categories WHERE idCategory=$id;";
 	// }
