@@ -4,6 +4,7 @@
 	/********************************************/
 
 require dirname(__FILE__).'/modelinterface.php';
+include_once dirname(__FILE__).'/responseFunction.php';
 
 Class User implements modelinterface{
 
@@ -17,6 +18,10 @@ Class User implements modelinterface{
 		$this->lastname = $lastname;
 		$this->mail = $mail;
 		$this->confirmed = $confirmed;
+	}
+
+	public static function userLogger($nickname, $password){
+		return new self(null,$nickname,$password,null,null,null,null);
 	}
 
 	public function getObjectData(){
@@ -36,41 +41,61 @@ Class User implements modelinterface{
 	}
 
 	public function getFromId($id){
-		return 'TODO';
-	}
-
-	public function addNewData($User){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 		$DB->connect();
 
-		$res = $DB->startQuery($Q->addNewUser($User->nickname,$User->password,$User->firstname,$User->lastname,$User->mail,$User->confirmed));
+		$res = $DB->startQuery($Q->getUserFromId($id));
+		$res = $DB->returnFirstRow($res);
 
 		$DB->disconnect();
-
-		if($res == 1){
-			$response = array(
-				'Status'=>'OK',
-				'Message'=>'User successfully added'
-			);
-			return json_encode($response);
-		}
-
-		$response = array(
-			'Status'=>'KO',
-			'Reason'=>'Something went wrong with the query'
-		);
-		return json_encode($response);
+		sendResponse('Here\'s the user you asked for','No user found',$res,false);
 	}
 
-	public function updateData($User){
-		return 'TODO';
+	public function getAllData(){
+		$DB = new Database(Install::getInstance());
+		$Q = new Query;
+		$DB-> connect();
+
+		$res = $DB->startQuery($Q->getAllUsers());
+		$res = $DB->returnAllRows($res);
+
+		$DB->disconnect();
+		sendResponse('Users found','No users found',$res,false);
 	}
 
-	public function deleteData($User){
-		return 'TODO';
+	public function addNewData(){
+		$DB = new Database(Install::getInstance());
+		$Q = new Query();
+		$DB->connect();
+
+		$res = $DB->startQuery($Q->addNewUser($this->getObjectData()));
+
+		$DB->disconnect();
+		sendResponse('User successfully added','Something went wrong with the query',null,true);
 	}
 
+	public function updateData(){
+		$DB = new Database(Install::getInstance());
+		$Q = new Query();
+		$DB->connect();
+
+		$res = $DB->startQuery($Q->updateUser($this->getObjectData()));
+
+		$DB->disconnect();
+		sendResponse('User info successfully update','Something went wrong, check the information you provided',null,true);
+	}
+
+	public function deleteData(){
+		$DB = new Database(Install::getInstance());
+		$Q = new Query();
+		$DB->connect();
+
+		$res = $DB->startQuery($Q->deleteUser($this->getId()));
+
+		$DB->disconnect();
+		sendResponse('User deleted successfully','Something went wrong while deleting the user',null,true);
+	}
 }
 	/********************************************/
 	/******* BestBug Studio Control Panel *******/
