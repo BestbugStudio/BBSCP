@@ -5,59 +5,60 @@
 
 class Query{
 
-	public function login($nick,$pwd){
-		return "SELECT * FROM bbscp_admin_user WHERE nickname = '$nick' AND password = '$pwd';";
+	public function login($json_data){
+		$json_data = json_decode($json_data,true);
+		return "SELECT * FROM bbscp_admin_user WHERE nickname = '".$json_data['nickname']."' AND password = '".$json_data['password']."';";
 	}
 
 	/*** USER QUERIES ***/
-	public function addNewUser($nickname,$password,$firstname,$lastname,$mail,$confirmed){
-		return "INSERT INTO bbscp_admin_user (nickname,password,firstname,lastname,mail,confirmed) VALUES ('$nickname','$password','$firstname','$lastname','$mail',$confirmed);";
-	}
-	public function getAllUsers(){
-		return "SELECT idUser, nickname, mail, confirmed FROM bbscp_admin_user;";
-	}
-	public function getUserFromId($id){
-		return "SELECT idUser, nickname, mail, confirmed FROM bbscp_admin_user WHERE idUser = $id;";
-	}
-	public function updateUser($id, $nickname, $password, $firstname,$lastname,$mail){
-		return "UPDATE bbscp_admin_user SET nickname='$nickname', $password='$password', firstname='$firstname', lastname='$lastname', mail='$mail' WHERE idUser=$id;";
-	}
-	public function updateUserSetConfirmed($id, $conf){
-		return "UPDATE bbscp_admin_user SET confirmed=$conf WHERE idUser=$id;";
-	}
-	public function deleteUser($id){
-		return "DELETE FROM bbscp_admin_user WHERE idUser=$id;";
-	}
+		public function addNewUser($json_data){
+			$json_data = json_decode($json_data,true);
+			return "INSERT INTO bbscp_admin_user (nickname,password,firstname,lastname,mail,confirmed) VALUES ('".$json_data['nickname']."','".$json_data['password']."','".$json_data['firstname']."','".$json_data['lastname']."','".$json_data['mail']."',".$json_data['confirmed'].");";
+		}
+		public function getAllUsers(){
+			return "SELECT idUser, nickname, mail, confirmed FROM bbscp_admin_user;";
+		}
+		public function getUserFromId($id){
+			return "SELECT idUser, nickname, mail, confirmed FROM bbscp_admin_user WHERE idUser = $id;";
+		}
+		public function updateUser($json_data){
+			return "UPDATE bbscp_admin_user SET nickname='".$json_data['nickname']."', $password='".$json_data['password']."', firstname='".$json_data['firstname']."', lastname='".$json_data['lastname']."', mail='".$json_data['mail']."' WHERE idUser=".$json_data['id'].";";
+		}
+		public function updateUserSetConfirmed($id, $conf){
+			return "UPDATE bbscp_admin_user SET confirmed=$conf WHERE idUser=$id;";
+		}
+		public function deleteUser($id){
+			return "DELETE FROM bbscp_admin_user WHERE idUser=$id;";
+		}
 
 	/*** ARTICLE QUERIES ***/
-	public function getArticleFromId($id){
-		return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE idArticle = $id ORDER BY pubdate DESC;";
-	}
-	public function getAllarticlesInfo(){
-		return "SELECT idArticle, title, category, pubdate, featured_image, featured_link FROM articles;";
-	}
-	public function getArticlesFromCategory($cat){
-		return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE category=$cat ORDER BY pubdate DESC;";
-	}
-	public function addNewArticle($json_data){
-		if($ftimg == ""){
-			$ftimg="defaultimage.jpg";
+		public function getArticleFromId($id){
+			return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE idArticle = $id ORDER BY pubdate DESC;";
 		}
-		return "INSERT INTO articles (title,content,category,pubdate,featured_image,featured_link) VALUES ('".$json_data['title']."','".$json_data['content']."','".$json_data['category']."','".$json_data['pubdate']."','".$json_data['ftimg']."','".$json_data['link']."');";
-	}
-	public function updateArticle($json_data){
-		
-		$query = "UPDATE articles SET title='".$json_data['title']."',content='".$json_data['content']."',category=".$json_data['category'].",pubdate='".$json_data['pubdate']."',featured_link='".$json_data['link']."'";
+		public function getAllarticlesInfo(){
+			return "SELECT idArticle, title, category, pubdate, featured_image, featured_link FROM articles;";
+		}
+		public function getArticlesFromCategory($cat){
+			return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE category=$cat ORDER BY pubdate DESC;";
+		}
+		public function addNewArticle($json_data){
+			if($ftimg == ""){
+				$ftimg="defaultimage.jpg";
+			}
+			return "INSERT INTO articles (title,content,category,pubdate,featured_image,featured_link) VALUES ('".$json_data['title']."','".$json_data['content']."','".$json_data['category']."','".$json_data['pubdate']."','".$json_data['ftimg']."','".$json_data['link']."');";
+		}
+		public function updateArticle($json_data){
+			
+			$query = "UPDATE articles SET title='".$json_data['title']."',content='".$json_data['content']."',category=".$json_data['category'].",pubdate='".$json_data['pubdate']."',featured_link='".$json_data['link']."'";
 
-		if($json_data['ftimg'] != "")
-			$query .= ",featured_image='".$json_data['ftimg']."'";
-		
-		return $query.", WHERE idArticle=".$json_data['id'].";";
-	}
-
-	public function deleteArticle($id){
-		return "DELETE FROM articles WHERE idArticle=$id;";
-	}
+			if($json_data['ftimg'] != "")
+				$query .= ",featured_image='".$json_data['ftimg']."'";
+			
+			return $query.", WHERE idArticle=".$json_data['id'].";";
+		}
+		public function deleteArticle($id){
+			return "DELETE FROM articles WHERE idArticle=$id;";
+		}
 
 	/*** CATEGORIE QUERIES ***/
 	public function getCategoryFromId($id){
@@ -66,13 +67,15 @@ class Query{
 	public function getAllCategories(){
 		return "SELECT idCategory, category_name FROM categories;";
 	}
-	public function addNewCategory($category_name){
-		return "INSERT INTO categories (category_name) VALUES ('$category_name');";
+	public function addNewCategory($json_data){
+		return "INSERT INTO categories (category_name) VALUES ('".$json_data['category_name']."');";
+	}
+	public function updateCategory($json_data){
+		return "UPDATE categories SET category_name='".$json_data['category_name']."' WHERE idCategory=".$json_data['id'].";";
 	}
 	public function deleteCategory($id){
 		return "DELETE FROM categories WHERE idCategory=$id;";
 	}
-
 	
 	/*** Get ***/
 
@@ -110,9 +113,7 @@ class Query{
 
 	/*** Update ***/
 	
-	// public function updateCategory($id,$category_name){
-	// 	return "UPDATE categories SET category_name='$category_name' WHERE idCategory=$id;";
-	// }
+	
 	// public function updateMenu($id,$menu_title,$category,$static,$submenu_of){
 	// 	return "UPDATE site_menu SET menu_title='$menu_title', category=$category, static=$static, submenu_of=$submenu_of WHERE idMenu=$id;";
 	// }

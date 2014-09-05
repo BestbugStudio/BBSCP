@@ -20,6 +20,10 @@ Class User implements modelinterface{
 		$this->confirmed = $confirmed;
 	}
 
+	public static function userLogger($nickname, $password){
+		return new self(null,$nickname,$password,null,null,null,null);
+	}
+
 	public function getObjectData(){
 		return json_encode(array(
 				'id'		=> $this->id,
@@ -60,34 +64,34 @@ Class User implements modelinterface{
 		sendResponse('Users found','No users found',$res,false);
 	}
 
-	public function addNewData($User){
+	public function addNewData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 		$DB->connect();
 
-		$res = $DB->startQuery($Q->addNewUser($User->nickname,$User->password,$User->firstname,$User->lastname,$User->mail,$User->confirmed));
+		$res = $DB->startQuery($Q->addNewUser($this->getObjectData()));
 
 		$DB->disconnect();
 		sendResponse('User successfully added','Something went wrong with the query',null,true);
 	}
 
-	public function updateData($User){
+	public function updateData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 		$DB->connect();
 
-		$res = $DB->startQuery($Q->updateUser($User->id,$User->nickname,$User->password,$User->firstname,$User->lastname,$User->mail,$User->confirmed));
+		$res = $DB->startQuery($Q->updateUser($this->getObjectData()));
 
 		$DB->disconnect();
 		sendResponse('User info successfully update','Something went wrong, check the information you provided',null,true);
 	}
 
-	public function deleteData($User){
+	public function deleteData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 		$DB->connect();
 
-		$res = $DB->startQuery($Q->deleteUser($User->id));
+		$res = $DB->startQuery($Q->deleteUser($this->getId()));
 
 		$DB->disconnect();
 		sendResponse('User deleted successfully','Something went wrong while deleting the user',null,true);

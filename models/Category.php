@@ -19,7 +19,7 @@ Class Category implements modelinterface{
 	public function getObjectData(){
 		return json_encode(array(
 				'id'			=> $this->id,
-				'categoryname'	=> $this->categoryname
+				'category_name'	=> $this->categoryname
 			));
 	}
 	
@@ -51,34 +51,34 @@ Class Category implements modelinterface{
 		sendResponse('All categories found','Error, no category has been found',$res,false);
 	}
 
-	public function addNewData($Category){
+	public function addNewData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 		$DB->Connect();
 
-		$res = $DB->StartQuery($Q->addNewCategory($Category->categoryname));
+		$res = $DB->StartQuery($Q->addNewCategory($this->getObjectData()));
 		
 		$DB->disconnect();
 		sendResponse('Category successfully added','Something went wrong while adding the category, try again',null,true);
 	}
 
-	public function updateData($Category){
+	public function updateData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 		$DB->Connect();
 
-		$res = $DB->StartQuery($Q->updateCategory($Category->id,$Category->categoryname));
+		$res = $DB->StartQuery($Q->updateCategory($this->getObjectData()));
 
 		$DB->disconnect();
 		sendResponse('Category successfully updated','Something went wrong, check the information you entered',null,true);
 	}
 
-	public function deleteData($OBJINSTANCE){
+	public function deleteData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 		$DB->Connect();
 
-		$res = $DB->StartQuery($Q->deleteCategory($Category->id));
+		$res = $DB->StartQuery($Q->deleteCategory($this->getId()));
 
 		$DB->disconnect();
 		sendResponse('Category successfully deleted','Something went wrong, try again',null,true);

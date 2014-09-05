@@ -3,7 +3,8 @@
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
 
-	include_once dirname(__FILE__).'/utilities/main.php';
+	include_once dirname(__FILE__).'/main.php';
+	include_once dirname(__FILE__).'/../../models/User.php';
 
 	class Login{
 
@@ -27,7 +28,6 @@
 			}else{
 				echo '
 					<form class="loginform" method="POST" action="#">
-						
 						<div class="input-group">
 							<span class="input-group-addon">Username</span>
 							<input type="text" class="form-control" name="username"></input>
@@ -47,9 +47,11 @@
 			$this->DB->connect();
 
 			$username = $this->DB->sanitize($_POST['username']);
-			$password = $this->DB->sanitize($_POST['password']);
+			$password = sha1($this->DB->sanitize($_POST['password']));
  			
-			$logQuery = $this->Q->login($username,sha1($password));
+			$User = User::userLogger($username,$password);
+
+			$logQuery = $this->Q->login($User->getObjectData());
 			$result = $this->DB->startQuery($logQuery);
 			$result = $this->DB->returnFirstRow($result);
 

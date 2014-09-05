@@ -101,7 +101,7 @@ Class Article implements modelinterface{
 		$Q = new Query();
 		$DB->connect();
 
-		$res = $DB->startQuery($Q->deleteArticle($this->id));
+		$res = $DB->startQuery($Q->deleteArticle($this->getId()));
 
 		$DB->disconnect();
 		sendResponse('Article deleted successfully','Something went wrong while deleting the article',null,true);

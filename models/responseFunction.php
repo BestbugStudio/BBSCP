@@ -3,7 +3,7 @@
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
 	
-	public function sendResponse($validMessage,$invalidMessage,$data,$expectedBool){
+	function sendResponse($validMessage,$invalidMessage,$data,$expectedBool){
 		
 		if($expectedBool)
 			$cond = ($res==1);
