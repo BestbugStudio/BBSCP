@@ -8,9 +8,9 @@
 		public function getId();
 		public function getFromId($id);
 		public function getAllData();
-		public function addNewData($OBJINSTANCE);
-		public function updateData($OBJINSTANCE);
-		public function deleteData($OBJINSTANCE);
+		public function addNewData();
+		public function updateData();
+		public function deleteData();
 	}
 
 	/********************************************/

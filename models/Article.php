@@ -28,7 +28,7 @@ Class Article implements modelinterface{
 				'category'	=> $this->category,
 				'content'	=> $this->content,
 				'pubdate'	=> $this->pubdate,
-				'ftimage'	=> $this->ftimage,
+				'ftimg'		=> $this->ftimage,
 				'link'	 	=> $this->link
 			));
 	}
@@ -49,7 +49,20 @@ Class Article implements modelinterface{
 		sendResponse('Article found','No article found',$res,false);
 	}
 
-	public function getAllData(){
+	public function getFromCategory($category){
+		$DB = new Database(Install::getInstance());
+		$Q = new Query;
+		$DB-> connect();
+
+		$res = $DB->startQuery($Q->getArticlesFromCategory($category));
+		$res = $DB->returnAllRows($res);
+
+		$DB->disconnect();
+		sendResponse('Articles found','No articles found for this category',$res,false);
+	}
+
+
+	public static function getAllData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query;
 		$DB-> connect();
@@ -61,46 +74,34 @@ Class Article implements modelinterface{
 		sendResponse('Articles found','No articles found',$res,false);
 	}
 
-	public function getFromCategory($Article){
-		$DB = new Database(Install::getInstance());
-		$Q = new Query;
-		$DB-> connect();
-
-		$res = $DB->startQuery($Q->getArticlesFromCategory($Article->category));
-		$res = $DB->returnAllRows($res);
-
-		$DB->disconnect();
-		sendResponse('Articles found','No articles found for this category',$res,false);
-	}
-
-	public function addNewData($Article){
+	public function addNewData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 		$DB->connect();
 
-		$res = $DB->startQuery($Q->addNewArticle($Article->title,$Article->content,$Article->category,$Article->pubdate,$Article->ftimg, $Article->link));
+		$res = $DB->startQuery($Q->addNewArticle($this->getObjectData()));
 
 		$DB->disconnect();
 		sendResponse('Article successfully added','Something went wrong with the query',null,true);
 	}
 
-	public function updateData($Article){
+	public function updateData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 		$DB->connect();
 
-		$res = $DB->startQuery($Q->updateArticle($Article->id,$Article->title,$Article->content,$Article->category,$Article->pubdate,$Article->ftimg, $Article->link));
+		$res = $DB->startQuery($Q->updateArticle($this->getObjectData()));
 		
 		$DB->disconnect();
 		sendResponse('Article successfully update','Something went wrong, check the information you provided',null,true);
 	}
 
-	public function deleteData($Article){
+	public function deleteData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
 		$DB->connect();
 
-		$res = $DB->startQuery($Q->deleteArticle($Article->id));
+		$res = $DB->startQuery($Q->deleteArticle($this->id));
 
 		$DB->disconnect();
 		sendResponse('Article deleted successfully','Something went wrong while deleting the article',null,true);

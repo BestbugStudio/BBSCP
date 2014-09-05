@@ -39,18 +39,22 @@ class Query{
 	public function getArticlesFromCategory($cat){
 		return "SELECT idArticle, title, content, category, pubdate, featured_image, featured_link FROM articles WHERE category=$cat ORDER BY pubdate DESC;";
 	}
-	public function addNewArticle($title,$content,$category,$pubdate,$ftimg, $link){
+	public function addNewArticle($json_data){
 		if($ftimg == ""){
 			$ftimg="defaultimage.jpg";
 		}
-		return "INSERT INTO articles (title,content,category,pubdate,featured_image, featured_link) VALUES ('$title','$content','$category','$pubdate','$ftimg','$link');";
+		return "INSERT INTO articles (title,content,category,pubdate,featured_image,featured_link) VALUES ('".$json_data['title']."','".$json_data['content']."','".$json_data['category']."','".$json_data['pubdate']."','".$json_data['ftimg']."','".$json_data['link']."');";
 	}
-	public function updateArticle($id,$title,$content,$category,$pubdate,$ftimg, $link){
-		if($ftimg != "")
-			return "UPDATE articles SET title='$title',content='$content',category=$category,pubdate='$pubdate',featured_image='$ftimg',featured_link='$link' WHERE idArticle=$id;";
-		else
-			return "UPDATE articles SET title='$title',content='$content',category=$category,pubdate='$pubdate',featured_link='$link' WHERE idArticle=$id;";
+	public function updateArticle($json_data){
+		
+		$query = "UPDATE articles SET title='".$json_data['title']."',content='".$json_data['content']."',category=".$json_data['category'].",pubdate='".$json_data['pubdate']."',featured_link='".$json_data['link']."'";
+
+		if($json_data['ftimg'] != "")
+			$query .= ",featured_image='".$json_data['ftimg']."'";
+		
+		return $query.", WHERE idArticle=".$json_data['id'].";";
 	}
+
 	public function deleteArticle($id){
 		return "DELETE FROM articles WHERE idArticle=$id;";
 	}
