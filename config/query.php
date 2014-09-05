@@ -76,56 +76,32 @@ class Query{
 	public function deleteCategory($id){
 		return "DELETE FROM categories WHERE idCategory=$id;";
 	}
-	
-	/*** Get ***/
 
-		/*** Menus ***/
-		// public function getAdminMenu(){
-		// 	return "SELECT idMenu, menu_title, static, category, submenu_of FROM bbscp_admin_menu;";
-		// }
-		// public function getAdminMenuFromId($id){
-		// 	return "SELECT idMenu, menu_title, static, category, submenu_of FROM bbscp_admin_menu WHERE idMenu = $id;";
-		// }
-		// public function getSiteMenu(){
-		// 	return "SELECT idMenu, menu_title, static, category, submenu_of FROM site_menu;";
-		// }
-		// public function getSiteMenuFromId($id){
-		// 	return "SELECT idMenu, menu_title, static, category, submenu_of FROM site_menu WHERE idMenu = $id;";
-		// }
+	/*** MENU QUERIES ***/	
 
-		/*** articles ***/
-		
-
-		/*** categories ***/
-		
-
-		/*** Users ***/
-		
-
-
-	/*** Add ***/
-
-	
-	
-	// public function addNewMenu($menu_title,$category,$static, $submenu_of){
-	// 	return "INSERT INTO site_menu (menu_title,category,static,submenu_of) VALUES ('$menu_title',$category,$static,$submenu_of);";
-	// }
-
-	/*** Update ***/
-	
-	
-	// public function updateMenu($id,$menu_title,$category,$static,$submenu_of){
-	// 	return "UPDATE site_menu SET menu_title='$menu_title', category=$category, static=$static, submenu_of=$submenu_of WHERE idMenu=$id;";
-	// }
-
-
-	/*** Delete ***/
-	
-	
-	// public function deleteMenu($id){
-	// 	return "DELETE FROM site_menu WHERE idMenu=$id;";
-	// }
-	
+	public function getAllAdminMenu(){
+		return "SELECT idMenu, menu_title, static, category, submenu_of FROM bbscp_admin_menu;";
+	}
+	public function getAdminMenuFromId($id){
+		return "SELECT idMenu, menu_title, static, category, submenu_of FROM bbscp_admin_menu WHERE idMenu = $id;";
+	}
+	public function getAllSiteMenu(){
+		return "SELECT idMenu, menu_title, static, category, submenu_of FROM site_menu;";
+	}
+	public function getSiteMenuFromId($id){
+		return "SELECT idMenu, menu_title, static, category, submenu_of FROM site_menu WHERE idMenu = $id;";
+	}
+	public function addNewSiteMenu($json_data){
+		$json_data = json_decode($json_data,true);
+		return "INSERT INTO site_menu (menu_title,category,static,submenu_of) VALUES ('".$json_data['menu_title']."',".$json_data['category'].",".$json_data['static'].",".$json_data['submenu_of'].");";
+	}
+	public function updateSiteMenu($json_data){
+		$json_data = json_decode($json_data,true);
+		return "UPDATE site_menu SET menu_title='".$json_data['menu_title']."', category=".$json_data['category'].", static=".$json_data['static'].", submenu_of=".$json_data['submenu_of']." WHERE idMenu=".$json_data['id'].";";
+	}
+	public function deleteSiteMenu($id){
+		return "DELETE FROM site_menu WHERE idMenu=$id;";
+	}
 
 }
 
