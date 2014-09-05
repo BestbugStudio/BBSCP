@@ -18,11 +18,11 @@ In the future we'll create some presets modules but if needed you'll be able to 
 A best practice for the modules is that they have to be developed using MVC
 
 The presets modules will be:
-	- Article loader
-	- Slideshow
-	- Photogallery
-	- Mapmanager
-	- Social
+* Article loader
+* Slideshow
+* Photogallery
+* Mapmanager
+* Social
 
 A custom module must have
  	- a file named module-config.xml where you have to specify
