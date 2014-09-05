@@ -70,7 +70,6 @@
 
 		private function mainCallback(){
 			$Main = new Main();
-			//echo "LOGGATO! :D";
 		}
 	}
 

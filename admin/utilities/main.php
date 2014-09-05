@@ -12,7 +12,4 @@
 		//	OnMenuItemClick()
 		//		ob_start();
 		//		include dirname(__FILE__).'/subdir/index.php';
-		//
-		
-
 ?>
