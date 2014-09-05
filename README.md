@@ -18,20 +18,20 @@ In the future we'll create some presets modules but if needed you'll be able to 
 A best practice for the modules is that they have to be developed using MVC
 
 The presets modules will be:
-	* Article loader
-	* Slideshow
-	* Photogallery
-	* Mapmanager
-	* Social
+* Article loader
+* Slideshow
+* Photogallery
+* Mapmanager
+* Social
 
 A custom module must have
- 	* a file named module-config.xml where you have to specify
- 		* Module name
- 		* Module shortname
- 	* an index.php that will be the view of the module
- 	* a controller.php that will be your controller
- 	* a class folder where you'll save the classes you'll use to manage datas
- 	* css and js folders
+* a file named module-config.xml where you have to specify
+	+ Module name
+	+ Module shortname
+* an index.php that will be the view of the module
+* a controller.php that will be your controller
+* a class folder where you'll save the classes you'll use to manage datas
+* css and js folders
 
 
 ## Front-end
