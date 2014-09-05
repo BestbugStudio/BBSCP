@@ -2,10 +2,10 @@
 <items>
 	
 	<modulename>
-		<fullname></fullname>
-		<shortname></shortname>
+		<fullname>Article Manager</fullname>
+		<shortname>artclmngr</shortname>
 	</modulename>
 	
-	<sqlfile></sqlfile>
+	<sqlfile>none</sqlfile>
 
 </items>

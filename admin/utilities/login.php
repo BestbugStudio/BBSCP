@@ -69,8 +69,8 @@
 		}
 
 		private function mainCallback(){
-			//$Main = new Main($this->DB, $this->Q);
-			echo "LOGGATO! :D";
+			$Main = new Main();
+			//echo "LOGGATO! :D";
 		}
 	}
 
