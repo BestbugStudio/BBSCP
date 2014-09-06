@@ -16,6 +16,10 @@ Class MainBackend{
 
 		public function __construct(){
 			$this->printMenu();
+
+			if(isset($_GET['module'])){
+				$this->loadModule($_GET['module']);
+			}
 		}
 
 		private function printMenu(){
@@ -47,7 +51,7 @@ Class MainBackend{
 							<li class="nav menuitem dropdown">
 								<a id="drop1" data-target="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Article Manager <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-									<li role="presentation" class="nav menuitem"><a role="menuitem" tabindex="-1" href="#">Edit Articles</a></li>
+									<li role="presentation" class="nav menuitem"><a role="menuitem" tabindex="-1" href="?module=articlemanager">Edit Articles</a></li>
 									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Categories</a></li>
 								</ul>
 							</li>
