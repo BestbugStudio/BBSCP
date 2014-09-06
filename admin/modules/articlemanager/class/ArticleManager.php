@@ -3,8 +3,23 @@
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
 
-	include dirname(__FILE__).'/class/ArticleManager.php';
-	return new ArticleManager();
+Class ArticleManager{
+
+
+
+
+
+
+	public function getOptions(){
+
+	}
+	
+	public function getView($options){
+		//Here it'll show the Article List
+
+		echo 'ARTICLE VIEW!';
+	}
+}
 
 	/********************************************/
 	/******* BestBug Studio Control Panel *******/

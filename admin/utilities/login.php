@@ -3,7 +3,7 @@
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
 
-	include_once dirname(__FILE__).'/main.php';
+	
 	include_once dirname(__FILE__).'/../../models/User.php';
 
 	class Login{
@@ -69,6 +69,7 @@
 		}
 
 		private function mainCallback(){
+			include_once dirname(__FILE__).'/main.php';
 			$Main = new Main();
 		}
 	}

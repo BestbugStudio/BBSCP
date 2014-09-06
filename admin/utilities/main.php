@@ -1,15 +1,16 @@
 <?
 		//Main constructor will load all the modules
 
-		// Iterate in /admin/modules directory
-		// Foreach (Directory as subdir)
-		//		$config = simplexml_load_file('subdir/modconfig.xml');
-		//		menu_title = $config->fullname;
-		//
-		// Print Menu
-		//
-		// Each menu is linked to it's module index.php
-		//	OnMenuItemClick()
-		//		ob_start();
-		//		include dirname(__FILE__).'/subdir/index.php';
+		// Menu will be created fetching data from database.bbscp_admin_menu
+		//		When a module is installed it will save its necessary menus in this table
+
+		// When a menu is clicked the following code will be executed:
+		//	$obj = include MODULES.'/'.$clickedMenu.'/index.php';		#MODULES will be a defined variable in a php scrit in modules folder
+		//	$obj->getOption/View/any provided method
+
+		$oggetto = include dirname(__FILE__).'/../modules/articlemanager/index.php';
+
+		var_dump($oggetto);
+		$oggetto->getView($pippo);
+
 ?>

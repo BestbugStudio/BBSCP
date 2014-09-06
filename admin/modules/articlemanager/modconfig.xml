@@ -4,6 +4,7 @@
 	<modulename>
 		<fullname>Article Manager</fullname>
 		<shortname>artclmngr</shortname>
+		<foldername>articlemanager</foldername>
 	</modulename>
 	
 	<sqlfile>none</sqlfile>
