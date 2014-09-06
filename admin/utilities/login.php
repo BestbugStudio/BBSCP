@@ -69,8 +69,8 @@
 		}
 
 		private function mainCallback(){
-			include_once dirname(__FILE__).'/main.php';
-			$Main = new Main();
+			include_once dirname(__FILE__).'/mainbackend.php';
+			$MainBe = new MainBackend();
 		}
 	}
 
