@@ -28,6 +28,47 @@ Class MainBackend{
 			$DB->connect();
 
 			$menu = $DB->startQuery($Q->getAllAdminMenu());
+			$menu = $DB->returnAllRows($menu);
+			print_r($menu);
+
+
+			$menuStr = '<nav class="navbar navbar-default CPmenu" role="navigation">
+					<div class="container-fluid">
+
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li id="home" class="nav menuitem"><a href="index.php"><span class="glyphicon glyphicon-home homespan"></span></a></li>';
+
+			echo "<br>";
+			// foreach ($menurow as $m) {
+			for ($i=0; $i < count($menu); $i++){
+
+				$menutitle = $menu[$i]['menu_title'];
+				$trimmedtitle= str_replace(" ", "", $menutitle);
+
+				if($menu[$i]['modulename'] == $menu[$i+1]['modulename']){
+					
+				}
+
+
+				$menuStr .= '<li id="'.$trimmedtitle.'" class="nav menuitem">';
+
+					print_r($m);
+					echo "</br>";
+			
+			}
+
+
+
+
 
 			$menuStr = '
 			<nav class="navbar navbar-default CPmenu" role="navigation">
@@ -46,17 +87,17 @@ Class MainBackend{
 						<ul class="nav navbar-nav">
 							<li id="home" class="nav menuitem"><a href="index.php"><span class="glyphicon glyphicon-home homespan"></span></a></li>
 							
-							<li id="menus" class="nav menuitem"><a href="?f=lister.php&type=menus">Manage Menu</a></li>
+							<li id="menus" class="nav menuitem"><a href="?module=menumanager">Manage Menu</a></li>
 							
 							<li class="nav menuitem dropdown">
 								<a id="drop1" data-target="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Article Manager <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
 									<li role="presentation" class="nav menuitem"><a role="menuitem" tabindex="-1" href="?module=articlemanager">Edit Articles</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Categories</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="?module=articlemanager">Edit Categories</a></li>
 								</ul>
 							</li>
 
-							<li id="categories" class="nav menuitem"><a href="?f=lister.php&type=categories">Manage Categories</a></li>
+							<li id="categories" class="nav menuitem"><a href="?module=articlemanager">Manage Categories</a></li>
 							<li id="articles" class="nav menuitem"><a href="?f=lister.php&type=articles">Manage Articles</a></li>
 							<li id="users" class="nav menuitem"><a href="?f=lister.php&type=users">Manage Users</a></li>
 							<li id="Logout" class="nav menuitem logout"><a href="?f=logout.php">Logout</a></li>
