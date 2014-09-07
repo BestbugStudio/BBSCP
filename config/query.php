@@ -80,7 +80,7 @@ class Query{
 	/*** MENU QUERIES ***/	
 
 	public function getAllAdminMenu(){
-		return "SELECT idMenu, menu_title, static, category, submenu_of, options, modulename FROM bbscp_admin_menu ORDER BY modulename;";
+		return "SELECT idMenu, menu_title, static, category, submenu_of, options, modulename  FROM bbscp_admin_menu ORDER BY modulename;";
 	}
 	public function getAdminMenuFromId($id){
 		return "SELECT idMenu, menu_title, static, category, submenu_of FROM bbscp_admin_menu WHERE idMenu = $id;";
