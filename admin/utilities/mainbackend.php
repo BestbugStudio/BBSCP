@@ -64,22 +64,14 @@ Class MainBackend{
 								<ul class="dropdown-menu" role="menu" aria-labelledby="drop_'.$trimmedtitle.'">';
 
 					foreach ($submen as $sm) {
-						if(!empty($sm['options'])){
-							$optquery = '&'.http_build_query(json_decode($sm['options'],true));
-						}
-						$href = "?module=".$modulename.$optquery;
-
+						$href = $this->getUrlFromOptions($modulename,$sm['options']);
 						$menuStr .= $this->getMenuListItem($sm['menu_title'],str_replace(" ", "", $sm['menu_title']),$href);
 					}
 
-					$menuStr .= '</ul>
-							</li>';
-				}else{
-					if(!empty($menu[$i]['options'])){
-						$optquery = '&'.http_build_query(json_decode($menu[$i]['options'],true));
-					}
-					$href = "?module=".$modulename.$optquery;
+					$menuStr .= '</ul></li>';
 
+				}else{
+					$href = $this->getUrlFromOptions($modulename,$menu[$i]['options']);
 					$menuStr.=$this->getMenuListItem($menutitle,$trimmedtitle,$href);
 				}
 			}
@@ -102,6 +94,12 @@ Class MainBackend{
 
 	private function getMenuListItem($menutitle,$trimmedtitle,$href){
 		return '<li id="'.$trimmedtitle.'" class="nav menuitem"><a class="menuitem" href="'.$href.'">'.$menutitle.'</a></li>';
+	}
+	private function getUrlFromOptions($modulename,$opt){
+		if(!empty($opt)){
+			$optquery = '&'.http_build_query(json_decode($opt,true));
+		}
+		return $href = "?module=".$modulename.$optquery;
 	}
 
 
