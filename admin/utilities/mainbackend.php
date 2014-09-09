@@ -62,7 +62,6 @@ Class MainBackend{
 						$href = $this->getUrlFromOptions($modulename,$sm['options']);
 						$menuStr .= $this->getMenuListItem($sm['menu_title'],str_replace(" ", "", $sm['menu_title']),$href);
 					}
-
 					$menuStr .= '</ul></li>';
 
 				}else{
@@ -85,8 +84,6 @@ Class MainBackend{
 		$oggetto = include dirname(__FILE__).'/../modules/'.$clicked.'/index.php';
 		$oggetto->getView($pippo);
 	}
-
-
 	private function getMenuListItem($menutitle,$trimmedtitle,$href){
 		return '<li id="'.$trimmedtitle.'" class="nav menuitem"><a class="menuitem" href="'.$href.'">'.$menutitle.'</a></li>';
 	}
@@ -96,21 +93,16 @@ Class MainBackend{
 		}
 		return $href = "?module=".$modulename.$optquery;
 	}
-
-
 	private function search($array, $key, $value){
 	    $results = array();
-
 	    if (is_array($array)) {
 	        if (isset($array[$key]) && $array[$key] == $value) {
 	            $results[] = $array;
 	        }
-
 	        foreach ($array as $subarray) {
 	            $results = array_merge($results, $this->search($subarray, $key, $value));
 	        }
 	    }
-
 	    return $results;
 	}
 }	
