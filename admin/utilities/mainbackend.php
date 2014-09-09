@@ -14,107 +14,112 @@ include_once ABSOLUTEPATH.'/utilities/database.php';
 
 Class MainBackend{
 
-		public function __construct(){
-			$this->printMenu();
+	public function __construct(){
+		$this->printMenu();
 
-			if(isset($_GET['module'])){
-				$this->loadModule($_GET['module']);
-			}
+		if(isset($_GET['module'])){
+			$this->loadModule($_GET['module']);
 		}
+	}
 
-		private function printMenu(){
-			$DB = new Database(Install::getInstance());
-			$Q = new Query();
-			$DB->connect();
+	private function printMenu(){
+		$DB = new Database(Install::getInstance());
+		$Q = new Query();
+		$DB->connect();
 
-			$menu = $DB->startQuery($Q->getAllAdminMenu());
-			$menu = $DB->returnAllRows($menu);
+		$menu = $DB->startQuery($Q->getAllAdminMenu());
+		$menu = $DB->returnAllRows($menu);
 
-			$menuStr = '
-				<nav class="navbar navbar-default CPmenu" role="navigation">
-					<div class="container-fluid">
+		$menuStr = '
+			<nav class="navbar navbar-default CPmenu" role="navigation">
+				<div class="container-fluid">
 
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav">
-								<li id="home" class="nav menuitem"><a href="index.php"><span class="glyphicon glyphicon-home homespan"></span></a></li>';
-			
-			for ($i=0; $i < count($menu); $i++){
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li id="home" class="nav menuitem"><a href="index.php"><span class="glyphicon glyphicon-home homespan"></span></a></li>';
+		
+		for ($i=0; $i < count($menu); $i++){
+			$menutitle = $menu[$i]['menu_title'];
+			$trimmedtitle= str_replace(" ", "", $menutitle);
+			$modulename = $menu[$i]['modulename'];
+			$options = $menu[$i]['options'];
 
-				$menutitle = $menu[$i]['menu_title'];
-				$trimmedtitle= str_replace(" ", "", $menutitle);
-				$modulename = $menu[$i]['modulename'];
-				$options = $menu[$i]['options'];
+			if($menu[$i]['submenu_of'] == 0){			
 
-				if($menu[$i]['submenu_of'] == 0){
-					$thisID = $menu[$i]['idMenu'];
-					$submen = $this->search($menu, 'submenu_of', $thisID);
+				$thisID = $menu[$i]['idMenu'];
+				$submen = $this->search($menu, 'submenu_of', $thisID);
 
-					if(!empty($submen)){
-						$menuStr.='
-								<li id="trimmedname" class="nav menuitem dropdown">
-									<a id="drop_'.$trimmedtitle.'" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">'.$menutitle.'<span class="caret"></span></a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="drop_'.$trimmedtitle.'">';
+				if(!empty($submen)){
+					$menuStr.='
+							<li id="trimmedname" class="nav menuitem dropdown">
+								<a id="drop_'.$trimmedtitle.'" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">'.$menutitle.'<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="drop_'.$trimmedtitle.'">';
 
-						foreach ($submen as $sm) {
-							$menuStr .= $this->getMenuListItem($sm['menu_title'],str_replace(" ", "", $sm['menu_title']),"?module=".$sm['modulename']);
+					foreach ($submen as $sm) {
+						if(!empty($sm['options'])){
+							$optquery = '&'.http_build_query(json_decode($sm['options'],true));
 						}
-						$menuStr .= '</ul></li>';
-					}else{
-						$menuStr.=$this->getMenuListItem($menutitle,$trimmedtitle,"?module=".$modulename);
+						$href = "?module=".$modulename.$optquery;
+
+						$menuStr .= $this->getMenuListItem($sm['menu_title'],str_replace(" ", "", $sm['menu_title']),$href);
 					}
+
+					$menuStr .= '</ul>
+							</li>';
+				}else{
+					if(!empty($menu[$i]['options'])){
+						$optquery = '&'.http_build_query(json_decode($menu[$i]['options'],true));
+					}
+					$href = "?module=".$modulename.$optquery;
+
+					$menuStr.=$this->getMenuListItem($menutitle,$trimmedtitle,$href);
 				}
 			}
+		}
 
-			$menuStr .= '		<li id="Logout" class="nav menuitem logout"><a href="?f=logout.php">Logout</a></li>
-							</ul>
-						</div>
+		$menuStr .= '		<li id="Logout" class="nav menuitem logout"><a href="?f=logout.php">Logout</a></li>
+						</ul>
 					</div>
-				</nav>';
-			
-			echo $menuStr;
-		}
+				</div>
+			</nav>';
+		
+		echo $menuStr;
+	}
 
-		private function loadModule($clicked){
-			$oggetto = include dirname(__FILE__).'/../modules/'.$clicked.'/index.php';
-			$oggetto->getView($pippo);
-		}
-
-
-		private function getMenuListItem($menutitle,$trimmedtitle,$href){
-			return '<li id="'.$trimmedtitle.'" class="nav menuitem"><a class="menuitem" href="'.$href.'">'.$menutitle.'</a></li>';
-		}
+	private function loadModule($clicked){
+		$oggetto = include dirname(__FILE__).'/../modules/'.$clicked.'/index.php';
+		$oggetto->getView($pippo);
+	}
 
 
-		private function search($array, $key, $value){
-		    $results = array();
+	private function getMenuListItem($menutitle,$trimmedtitle,$href){
+		return '<li id="'.$trimmedtitle.'" class="nav menuitem"><a class="menuitem" href="'.$href.'">'.$menutitle.'</a></li>';
+	}
 
-		    if (is_array($array)) {
-		        if (isset($array[$key]) && $array[$key] == $value) {
-		            $results[] = $array;
-		        }
 
-		        foreach ($array as $subarray) {
-		            $results = array_merge($results, $this->search($subarray, $key, $value));
-		        }
-		    }
+	private function search($array, $key, $value){
+	    $results = array();
 
-		    return $results;
-		}
+	    if (is_array($array)) {
+	        if (isset($array[$key]) && $array[$key] == $value) {
+	            $results[] = $array;
+	        }
 
-// $arr = array(0 => array(id=>1,name=>"cat 1"),
-//              1 => array(id=>2,name=>"cat 2"),
-//              2 => array(id=>3,name=>"cat 1"));
+	        foreach ($array as $subarray) {
+	            $results = array_merge($results, $this->search($subarray, $key, $value));
+	        }
+	    }
 
-// print_r(search($arr, 'name', 'cat 1'));
-
+	    return $results;
+	}
 }
 
 ?>

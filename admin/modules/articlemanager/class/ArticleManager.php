@@ -18,6 +18,8 @@ Class ArticleManager{
 		//Here it'll show the Article List
 
 		echo 'ARTICLE VIEW!';
+		echo $options;
+
 	}
 }
 
