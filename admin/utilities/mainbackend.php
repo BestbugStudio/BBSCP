@@ -1,12 +1,7 @@
 <?
-		//Main constructor will load all the modules
-
-		// Menu will be created fetching data from database.bbscp_admin_menu
-		//		When a module is installed it will save its necessary menus in this table
-
-		// When a menu is clicked the following code will be executed:
-		//	$obj = include MODULES.'/'.$clickedMenu.'/index.php';		#MODULES will be a defined variable in a php scrit in modules folder
-		//	$obj->getOption/View/any provided method
+	/********************************************/
+	/******* BestBug Studio Control Panel *******/
+	/********************************************/
 
 include_once dirname(__FILE__).'/../../abspath.php';
 include_once ABSOLUTEPATH.'/config/query.php';
@@ -118,6 +113,8 @@ Class MainBackend{
 
 	    return $results;
 	}
-}
-
+}	
+	/********************************************/
+	/******* BestBug Studio Control Panel *******/
+	/********************************************/
 ?>
