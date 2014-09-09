@@ -81,6 +81,7 @@ Class MainBackend{
 	}
 
 	private function loadModule($clicked){
+		print_r($_GET);
 		$oggetto = include dirname(__FILE__).'/../modules/'.$clicked.'/index.php';
 		$oggetto->getView($pippo);
 	}

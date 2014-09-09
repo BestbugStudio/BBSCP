@@ -7,6 +7,22 @@
 		<foldername>articlemanager</foldername>
 	</modulename>
 	
+	<menu>
+		<parent>Manage Articles</parent>
+		<child>
+			<childtitle>Edit Articles</childtitle>
+			<childopt>{"show":"articleList"}</childopt>
+		</child>
+		<child>
+			<childtitle>Edit Categories</childtitle>
+			<childopt>{"show":"categoryList"}</childopt>
+		</child>
+		<child>
+			<childtitle>Edit Tags</childtitle>
+			<childopt>{"show":"tagList"}</childopt>
+		</child>
+	</menu>
+	
 	<sqlfile>none</sqlfile>
 
 </items>
