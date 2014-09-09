@@ -14,12 +14,21 @@ Class ArticleManager{
 	
 	public function getView($options){
 
-		echo 'ARTICLE VIEW!';
-		echo $options;
+		//echo $options;
 
-		switch ($options) {
-			case 'value':
+		$selected = json_decode($options,true)['show'];
 
+		switch ($selected) {
+			case 'articleList':
+				echo 'ARTICLE VIEW!';
+				break;
+			
+			case 'categoryList':
+				echo 'Category VIEW!';
+				break;
+			
+			case 'tagList':
+				echo 'TAG VIEW!';
 				break;
 			
 			default:

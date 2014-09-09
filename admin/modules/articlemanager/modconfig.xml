@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-	
+
 	<modulename>
 		<fullname>Article Manager</fullname>
 		<shortname>artclmngr</shortname>
@@ -22,7 +22,7 @@
 			<childopt>{"show":"tagList"}</childopt>
 		</child>
 	</menu>
-	
+
 	<sqlfile>none</sqlfile>
 
 </items>

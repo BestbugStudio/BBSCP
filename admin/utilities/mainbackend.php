@@ -13,7 +13,7 @@ Class MainBackend{
 		$this->printMenu();
 
 		if(isset($_GET['module'])){
-			$this->loadModule($_GET['module']);
+			$this->loadModule($_GET['module'],json_encode($_GET));
 		}
 	}
 
@@ -80,10 +80,9 @@ Class MainBackend{
 		echo $menuStr;
 	}
 
-	private function loadModule($clicked){
-		print_r($_GET);
+	private function loadModule($clicked,$opt){
 		$oggetto = include dirname(__FILE__).'/../modules/'.$clicked.'/index.php';
-		$oggetto->getView($pippo);
+		$oggetto->getView($opt);
 	}
 	private function getMenuListItem($menutitle,$trimmedtitle,$href){
 		return '<li id="'.$trimmedtitle.'" class="nav menuitem"><a class="menuitem" href="'.$href.'">'.$menutitle.'</a></li>';
