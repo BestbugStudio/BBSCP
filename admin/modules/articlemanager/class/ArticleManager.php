@@ -20,7 +20,16 @@ Class ArticleManager{
 
 		switch ($selected) {
 			case 'articleList':
-				echo 'ARTICLE VIEW!';
+
+				$DB = new Database(Install::getInstance());
+				$Q = new Query();
+				$DB->Connect();
+
+				$listArray = $DB->ReturnAllRows($DB->StartQuery($Q->getAllarticlesInfo()));
+				$numbFields= $DB->queryNumFields($DB->StartQuery($Q->getAllArticlesInfo()));
+
+				$PrintTable = new PrintTable("Manage Articles",$listArray, $numbFields);
+
 				break;
 			
 			case 'categoryList':
@@ -32,18 +41,9 @@ Class ArticleManager{
 				break;
 			
 			default:
-			
+				
 				break;
 		}
-
-
-		// $this->dbname 	= $config->dbproperties->dbname;
-		// $this->dbuser 	= $config->dbproperties->dbuser;
-		// $this->dbpwd 	= $config->dbproperties->dbpwd;
-		// $this->dbhost 	= $config->dbproperties->dbaddr->dbhost;
-		// $this->dbport 	= (int)$config->dbproperties->dbaddr->dbdbport;
-
-
 	}
 }
 

@@ -88,6 +88,7 @@ Class MainBackend{
 		return '<li id="'.$trimmedtitle.'" class="nav menuitem"><a class="menuitem" href="'.$href.'">'.$menutitle.'</a></li>';
 	}
 	private function getUrlFromOptions($modulename,$opt){
+		$optquery = "";
 		if(!empty($opt)){
 			$optquery = '&'.http_build_query(json_decode($opt,true));
 		}
