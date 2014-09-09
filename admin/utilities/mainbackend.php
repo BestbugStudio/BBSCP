@@ -71,7 +71,7 @@ Class MainBackend{
 			}
 		}
 
-		$menuStr .= '		<li id="Logout" class="nav menuitem logout"><a href="?f=logout.php">Logout</a></li>
+		$menuStr .= '		<li id="Logout" class="nav menuitem logout"><a href="?logout=true">Logout</a></li>
 						</ul>
 					</div>
 				</div>

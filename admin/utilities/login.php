@@ -15,6 +15,10 @@
 			$this->DB = $DB;
 			$this->Q = $Q;
 
+			if(isset($_GET['logout']) && $_GET['logout'] == true){
+				$this->logout();
+			}
+
 			if(!isset($_POST['password']))
 				$this->printlogin();
 			elseif(isset($_POST['password']))
@@ -71,6 +75,13 @@
 		private function mainCallback(){
 			include_once dirname(__FILE__).'/mainbackend.php';
 			$MainBe = new MainBackend();
+		}
+		private function logout(){
+			session_start();
+			session_destroy();
+			unset($_GET['logout']);
+			empty($_POST);
+			echo'<meta http-equiv="REFRESH" content="0;url=index.php">';
 		}
 	}
 
