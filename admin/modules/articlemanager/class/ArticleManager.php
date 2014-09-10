@@ -5,7 +5,7 @@
 
 Class ArticleManager{
 
-	private $modulename;
+	private $modulename = "articlemanager";
 	private $childmenu = array();
 
 	public function getOptions(){
@@ -16,6 +16,16 @@ Class ArticleManager{
 
 		//echo $options;
 
+		if(isset($_GET['edit'])){
+			$this->showEditor($_GET['edit']);
+			die;
+		}elseif(isset($_GET['rem'])){
+			$this->removeData($_GET['rem']);
+			die;
+		}
+
+
+		$optarr = http_build_query(json_decode($options,true));
 		$selected = json_decode($options,true)['show'];
 
 		switch ($selected) {
@@ -25,10 +35,11 @@ Class ArticleManager{
 				$Q = new Query();
 				$DB->Connect();
 
-				$listArray = $DB->ReturnAllRows($DB->StartQuery($Q->getAllarticlesInfo()));
-				$numbFields= $DB->queryNumFields($DB->StartQuery($Q->getAllArticlesInfo()));
+				$res = $DB->StartQuery($Q->getAllarticlesInfo());
+				$listArray = $DB->ReturnAllRows($res);
+				$numbFields= $DB->queryNumFields($res);
 
-				$PrintTable = new PrintTable("Manage Articles",$listArray, $numbFields);
+				$PrintTable = new PrintTable("Manage Articles",$listArray, $numbFields, $optarr, '&edit=idart_', '&rem=idart_');
 
 				break;
 			
@@ -44,6 +55,13 @@ Class ArticleManager{
 				
 				break;
 		}
+	}
+
+	private function showEditor($id_num){
+		echo "Here's the editor ".$id_num;
+	}
+	private function removeData($id_num){
+		echo "I'll delete ".$id_num;
 	}
 }
 

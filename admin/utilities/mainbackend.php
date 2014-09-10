@@ -6,6 +6,7 @@
 include_once dirname(__FILE__).'/../../abspath.php';
 include_once ABSOLUTEPATH.'/config/query.php';
 include_once ABSOLUTEPATH.'/utilities/database.php';
+include_once dirname(__FILE__).'/printtable.php';
 
 Class MainBackend{
 
