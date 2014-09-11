@@ -31,6 +31,7 @@ A custom module must be developed in Object Orientation and it needs:
 	+ Menu (parent and child menu providing the options they will need to add in $_GET query)
 * an index.php that will ONLY return the main object of your module.
 * a getView($options) method in your main class that will show your view customized using the options you provided in modconfig.xml. The manager will automatically execute 
+
     $yourObject->getView($options_you_provided)
 
 Best practices:
