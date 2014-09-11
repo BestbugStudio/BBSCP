@@ -29,28 +29,30 @@ Class ArticleManager{
 
 		switch ($selected) {
 			case 'article':
-				$res = $DB->StartQuery($Q->getAllarticlesInfo());
-				$listArray = $DB->ReturnAllRows($res);
+				$res = $DB->startQuery($Q->getAllarticlesInfo());
+				$listArray = $DB->returnAllRows($res);
 				$numbFields= $DB->queryNumFields($res);
 				$tabletitle = "Manage Articles";
 				break;
 			
 			case 'category':
-				$res = $DB->StartQuery($Q->getAllCategories());
-				$listArray = $DB->ReturnAllRows($res);
+				$res = $DB->startQuery($Q->getAllCategories());
+				$listArray = $DB->returnAllRows($res);
 				$numbFields= $DB->queryNumFields($res);
 				$tabletitle = "Manage Categories";	
 				break;
 			
 			case 'tag':
-				$res = $DB->StartQuery($Q->getAllTags());
-				$listArray = $DB->ReturnAllRows($res);
+				$res = $DB->startQuery($Q->getAllTags());
+				$listArray = $DB->returnAllRows($res);
 				$numbFields= $DB->queryNumFields($res);
 				$tabletitle = "Manage Tags";	
 				break;
 			
 			default: break;
 		}
+
+		$listArray = array_reverse($listArray);
 
 		$PrintTable = new PrintTable($tabletitle, $listArray, $numbFields, $optarr, '&edit=idart_', '&rem=idart_');
 	}
