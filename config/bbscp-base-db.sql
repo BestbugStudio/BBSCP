@@ -48,8 +48,10 @@ CREATE TABLE IF NOT EXISTS `bbscp_admin_menu` (
   `static` tinyint(1) NOT NULL DEFAULT '1',
   `category` int(11) NOT NULL,
   `submenu_of` int(11) NOT NULL,
+  `options` varchar(255) NOT NULL,
+  `modulename` varchar(755) NOT NULL,
   PRIMARY KEY (`idMenu`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 -- --------------------------------------------------------
 
