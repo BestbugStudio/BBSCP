@@ -25,7 +25,7 @@ Class ArticleManager{
 			die;
 		}
 
-		$optarr = http_build_query(json_decode($options,true));
+		$opthttpquery = http_build_query(json_decode($options,true));
 		$selected = json_decode($options,true)['list'];
 		$tabletitle = "";
 		$what = "";
@@ -65,17 +65,24 @@ Class ArticleManager{
 
 		$listArray = array_reverse($listArray);
 
-		$PrintTable = new PrintTable($tabletitle, $listArray, $numbFields, $optarr, '&edit='.$what.'_', '&rem='.$what.'_');
+
+		$this->showNewButton($what, $opthttpquery);
+		$PrintTable = new PrintTable($tabletitle, $listArray, $numbFields, $opthttpquery, '&edit='.$what.'_', '&rem='.$what.'_');
 	}
 
 	private function showEditor($what_id){
-		echo "Here's the editor ".$what_id;
-
 		$what = split("_", $what_id)[0];
 		$id_n = split("_", $what_id)[1];
 
 		$Editor = new Editor();
 		$Editor->showEditorFor($what,$id_n);
+	}
+
+	private function showNewButton($what, $opthttpquery){
+		echo '<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-1"><button id="new'.$what.'" class="newButton"><a href="?'.$opthttpquery.'&edit='.$what.'_-1">Add New!</a></button></div>
+			  </div><br>';
 	}
 	
 	private function removeData($id_num){

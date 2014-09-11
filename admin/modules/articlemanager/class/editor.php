@@ -30,7 +30,7 @@ Class Editor{
 				default:break;
 			}		
 		}
-		
+		echo "asd";
 		ob_start();
 		include dirname(__FILE__).'/'.$what.'editor.php';
 	}
