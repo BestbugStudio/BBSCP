@@ -39,7 +39,7 @@ Class Category implements modelinterface{
 		sendResponse('Category found','Error, category not found',$res,false);
 	}
 
-	public function getAllData(){
+	public static function getAllData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query
 		$DB->connect();
