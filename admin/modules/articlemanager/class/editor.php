@@ -19,17 +19,16 @@ Class Editor{
 
 			switch($what){
 				case ARTLBL:
-				echo "asd";
 					$data = $DB->returnFirstRow($DB->startQuery($Q->getArticleFromId($id)));
 					break;
 				case CATLBL:
-				echo "lol";
 					$data = $DB->returnFirstRow($DB->startQuery($Q->getCategoryFromId($id)));
-
+					break;
+				case TAGLBL:
+					$data = $DB->returnFirstRow($DB->startQuery($Q->getTagFromId($id)));
+					break;
 				default:break;
-			}
-
-			
+			}		
 		}
 		
 		ob_start();
