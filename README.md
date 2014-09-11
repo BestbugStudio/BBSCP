@@ -32,7 +32,7 @@ A custom module must be developed in Object Orientation and it needs:
 * an index.php that will ONLY return the main object of your module.
 * a getView($options) method in your main class that will show your view customized using the options you provided in modconfig.xml. The manager will automatically execute 
 
-    $yourObject->getView($options_you_provided)
+        $yourObject->getView($options_you_provided)
 
 Best practices:
 * a class folder where you'll save the classes you'll use to manage datas
