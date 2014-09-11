@@ -1,4 +1,8 @@
-<?	
+<?
+	/********************************************/
+	/******* BestBug Studio Control Panel *******/
+	/********************************************/
+
 	$title = $data['title'];
 	$content=$data['content'];
 	$categoryID=$data['category'];
@@ -88,4 +92,9 @@
 	$("#datetimepicker").datetimepicker({format:"Y-m-d H:i:s"});
 </script>
 
+<?
+	/********************************************/
+	/******* BestBug Studio Control Panel *******/
+	/********************************************/
+?>
 
