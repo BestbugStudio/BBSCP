@@ -5,16 +5,11 @@
 
 Class ArticleManager{
 
-	private $modulename = "articlemanager";
-	private $childmenu = array();
-
 	public function getOptions(){
 
 	}
 	
 	public function getView($options){
-
-		//echo $options;
 
 		if(isset($_GET['edit'])){
 			$this->showEditor($_GET['edit']);
@@ -24,37 +19,40 @@ Class ArticleManager{
 			die;
 		}
 
-
 		$optarr = http_build_query(json_decode($options,true));
-		$selected = json_decode($options,true)['show'];
+		$selected = json_decode($options,true)['list'];
+		$tabletitle = "";
+
+		$DB = new Database(Install::getInstance());
+		$Q = new Query();
+		$DB->Connect();
 
 		switch ($selected) {
-			case 'articleList':
-
-				$DB = new Database(Install::getInstance());
-				$Q = new Query();
-				$DB->Connect();
-
+			case 'article':
 				$res = $DB->StartQuery($Q->getAllarticlesInfo());
 				$listArray = $DB->ReturnAllRows($res);
 				$numbFields= $DB->queryNumFields($res);
-
-				$PrintTable = new PrintTable("Manage Articles",$listArray, $numbFields, $optarr, '&edit=idart_', '&rem=idart_');
-
+				$tabletitle = "Manage Articles";
 				break;
 			
-			case 'categoryList':
-				echo 'Category VIEW!';
+			case 'category':
+				$res = $DB->StartQuery($Q->getAllCategories());
+				$listArray = $DB->ReturnAllRows($res);
+				$numbFields= $DB->queryNumFields($res);
+				$tabletitle = "Manage Categories";	
 				break;
 			
-			case 'tagList':
-				echo 'TAG VIEW!';
+			case 'tag':
+				$res = $DB->StartQuery($Q->getAllTags());
+				$listArray = $DB->ReturnAllRows($res);
+				$numbFields= $DB->queryNumFields($res);
+				$tabletitle = "Manage Tags";	
 				break;
 			
-			default:
-				
-				break;
+			default: break;
 		}
+
+		$PrintTable = new PrintTable($tabletitle, $listArray, $numbFields, $optarr, '&edit=idart_', '&rem=idart_');
 	}
 
 	private function showEditor($id_num){

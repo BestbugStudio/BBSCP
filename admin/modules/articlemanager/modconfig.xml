@@ -11,15 +11,15 @@
 		<parent>Manage Articles</parent>
 		<child>
 			<childtitle>Edit Articles</childtitle>
-			<childopt>{"show":"articleList"}</childopt>
+			<childopt>{"list":"article"}</childopt>
 		</child>
 		<child>
 			<childtitle>Edit Categories</childtitle>
-			<childopt>{"show":"categoryList"}</childopt>
+			<childopt>{"list":"category"}</childopt>
 		</child>
 		<child>
 			<childtitle>Edit Tags</childtitle>
-			<childopt>{"show":"tagList"}</childopt>
+			<childopt>{"list":"tag"}</childopt>
 		</child>
 	</menu>
 
