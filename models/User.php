@@ -52,7 +52,7 @@ Class User implements modelinterface{
 		sendResponse('Here\'s the user you asked for','No user found',$res,false);
 	}
 
-	public function getAllData(){
+	public static function getAllData(){
 		$DB = new Database(Install::getInstance());
 		$Q = new Query;
 		$DB-> connect();

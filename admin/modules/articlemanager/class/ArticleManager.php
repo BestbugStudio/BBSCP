@@ -8,6 +8,8 @@
 	define(ARTLBL, 'art');
 	define(CATLBL, 'cat');
 	define(TAGLBL, 'tag');
+	define(MODULENAME, 'articlemanager');
+	define(BASEHREF, 'modules/'.MODULENAME.'/');
 
 Class ArticleManager{
 

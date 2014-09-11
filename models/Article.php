@@ -14,7 +14,7 @@ Class Article implements modelinterface{
 
 		$this->id = $id;
 		$this->title = $title;
-		$this->category = $category[0];
+		$this->category = $category;
 		$this->content = $content;
 		$this->pubdate = $pubdate;
 		$this->ftimage = $ftimage;
