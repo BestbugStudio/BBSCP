@@ -53,7 +53,7 @@ Class ArticleManager{
 			
 			case 'tag':
 				//$res = $DB->startQuery($Q->getAllTags());
-				echo "<div class='col-md-12 col-md-offset-1'>HERE THERE'S A HUGE <i><u><strong>TODO</strong></i></u></div>";
+				echo "<div class='col-md-12 col-md-offset-1'>HERE THERE'S A HUGE <i><u><strong>TODO!</strong></i></u></div>";
 				$listArray = array(); // = $DB->returnAllRows($res);
 				$numbFields; //= $DB->queryNumFields($res);
 				$tabletitle = "Manage Tags";
