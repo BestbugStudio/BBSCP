@@ -74,7 +74,7 @@ Class ArticleManager{
 		$id_n = split("_", $what_id)[1];
 
 		$Editor = new Editor();
-		$Editor-> showEditorFor($what,$id_n);
+		$Editor->showEditorFor($what,$id_n);
 	}
 	
 	private function removeData($id_num){
