@@ -1,10 +1,10 @@
 <?	
-	$title = $articleData['title'];
-	$content=$articleData['content'];
-	$categoryID=$articleData['category'];
-	$pubdate = $articleData['pubdate'];
-	$ftimage = $articleData['featured_image'];
-	$link = $articleData['featured_link'];
+	$title = $data['title'];
+	$content=$data['content'];
+	$categoryID=$data['category'];
+	$pubdate = $data['pubdate'];
+	$ftimage = $data['featured_image'];
+	$link = $data['featured_link'];
 
 	$categoriesArray = $DB->returnAllRows($DB->StartQuery($Q->getAllCategories()));
 
@@ -30,7 +30,7 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-6" id="columneditor">
 
-		<div id="'.$article_id.'" class="input-group articleTitle">
+		<div class="input-group articleTitle">
 			<span class="input-group-addon">Article Title</span>
 			<input type="text" class="form-control" id="articleTitle" value=<? echo '"'.$title.'"'; ?>></input>
 		</div>
