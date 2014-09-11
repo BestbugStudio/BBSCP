@@ -3,6 +3,12 @@
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
 
+	include dirname(__FILE__).'/editor.php';
+
+	define(ARTLBL, 'art');
+	define(CATLBL, 'cat');
+	define(TAGLBL, 'tag');
+
 Class ArticleManager{
 
 	public function getOptions(){
@@ -22,6 +28,7 @@ Class ArticleManager{
 		$optarr = http_build_query(json_decode($options,true));
 		$selected = json_decode($options,true)['list'];
 		$tabletitle = "";
+		$what = "";
 
 		$DB = new Database(Install::getInstance());
 		$Q = new Query();
@@ -33,20 +40,23 @@ Class ArticleManager{
 				$listArray = $DB->returnAllRows($res);
 				$numbFields= $DB->queryNumFields($res);
 				$tabletitle = "Manage Articles";
+				$what = ARTLBL;
 				break;
 			
 			case 'category':
 				$res = $DB->startQuery($Q->getAllCategories());
 				$listArray = $DB->returnAllRows($res);
 				$numbFields= $DB->queryNumFields($res);
-				$tabletitle = "Manage Categories";	
+				$tabletitle = "Manage Categories";
+				$what = CATLBL;
 				break;
 			
 			case 'tag':
 				$res = $DB->startQuery($Q->getAllTags());
 				$listArray = $DB->returnAllRows($res);
 				$numbFields= $DB->queryNumFields($res);
-				$tabletitle = "Manage Tags";	
+				$tabletitle = "Manage Tags";
+				$what = TAGLBL;
 				break;
 			
 			default: break;
@@ -54,12 +64,19 @@ Class ArticleManager{
 
 		$listArray = array_reverse($listArray);
 
-		$PrintTable = new PrintTable($tabletitle, $listArray, $numbFields, $optarr, '&edit=idart_', '&rem=idart_');
+		$PrintTable = new PrintTable($tabletitle, $listArray, $numbFields, $optarr, '&edit='.$what.'_', '&rem='.$what.'_');
 	}
 
-	private function showEditor($id_num){
-		echo "Here's the editor ".$id_num;
+	private function showEditor($what_id){
+		echo "Here's the editor ".$what_id;
+
+		$what = split("_", $what_id)[0];
+		$id_n = split("_", $what_id)[1];
+
+		$Editor = new Editor();
+		$Editor-> showEditorFor($what,$id_n);
 	}
+	
 	private function removeData($id_num){
 		echo "I'll delete ".$id_num;
 	}

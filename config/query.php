@@ -60,7 +60,7 @@ class Query{
 		return "DELETE FROM articles WHERE idArticle=$id;";
 	}
 
-	/*** CATEGORIE QUERIES ***/
+	/*** CATEGORY QUERIES ***/
 	public function getCategoryFromId($id){
 		return "SELECT idCategory, category_name FROM categories WHERE idCategory = $id;";
 	}

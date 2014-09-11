@@ -3,7 +3,7 @@
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
 
-	include dirname(__FILE__).'/class/ArticleManager.php';
+	include dirname(__FILE__).'/class/articlemanager.php';
 	return new ArticleManager();
 
 	/********************************************/
