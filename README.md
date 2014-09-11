@@ -24,14 +24,17 @@ The presets modules will be:
 * Mapmanager
 * Social
 
-A custom module must have
-* a file named module-config.xml where you have to specify
+A custom module must be developed in Object Orientation. It needs:
+* a file named modconfig.xml where you have to specify
 	+ Module name
 	+ Module shortname
-* an index.php that will be the view of the module
-* a controller.php that will be your controller
+	+ Menu (parent and child menu providing the options they will need to add in $_GET query)
+* an index.php that will ONLY return the main object of your module. The manager will automatically execute $yourObject->getView($options_you_provided)
+
+Best practices:
 * a class folder where you'll save the classes you'll use to manage datas
-* css and js folders
+* custom css and js folders
+* use of MVC design pattern
 
 
 ## Front-end
