@@ -4,9 +4,9 @@
 	/********************************************/
 
 include dirname(__FILE__).'/../abspath.php';
-include ABSOLUTEPATH.'/utilities/database.php';
+include_once ABSOLUTEPATH.'/utilities/database.php';
 include_once ABSOLUTEPATH.'/install/install.php';
-include ABSOLUTEPATH.'/config/query.php';
+include_once ABSOLUTEPATH.'/config/query.php';
 
 	interface modelinterface{
 		public function getObjectData();

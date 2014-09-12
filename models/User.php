@@ -3,7 +3,7 @@
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
 
-require dirname(__FILE__).'/modelinterface.php';
+include_once dirname(__FILE__).'/modelinterface.php';
 include_once dirname(__FILE__).'/responseFunction.php';
 
 Class User implements modelinterface{

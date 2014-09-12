@@ -3,28 +3,78 @@
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
 
+	if(isset($_POST['update'])){
+		include dirname(__FILE__).'/../../../../models/Article.php';
 
-	$title = $data['title'];
-	$content=$data['content'];
-	$categoryID=$data['category'];
-	$pubdate = $data['pubdate'];
-	$ftimage = $data['featured_image'];
-	$link = $data['featured_link'];
+		$DB = new Database(Install::getInstance());
+		$DB->connect();
 
-	$article_id = split("_",$_GET['edit'])[1];
+		$article_id = $DB->sanitize($_POST['article_id']);
+		$title	= $DB->sanitize($_POST['article_title']);
+		$catId	= $DB->sanitize(split("_",$_POST['article_category'])[2]);
+		$content= $DB->sanitize($_POST['article_content']);
+		$pubdate= $DB->sanitize($_POST['article_pubdate']);
+		$link	= $DB->sanitize($_POST['article_link']);
+		$ftimage= $DB->sanitize($_POST['article_image']);
 
-	$categoriesArray = $DB->returnAllRows($DB->StartQuery($Q->getAllCategories()));
+		$categoriesArray = $DB->returnAllRows($DB->StartQuery($Q->getAllCategories()));
 
-	$categoriesView = "";
+		$categoriesView = "";
 
-	foreach($categoriesArray as $cat){
-		$categoriesView .= '<div class="input-group categoryGroup">
-							<span class="input-group-addon">
-								<input class="categorycheck" type="checkbox" id="check_'.$cat['idCategory'].'" name="article_category" value="id_category_'.$cat['idCategory'].'">
-							</span>
-							<span class="form-control categoryName">'.$cat['category_name'].'</span>
-							</div>';
+		foreach($categoriesArray as $cat){
+			$categoriesView .= '<div class="input-group categoryGroup">
+								<span class="input-group-addon">
+									<input class="categorycheck" type="checkbox" id="check_'.$cat['idCategory'].'" name="article_category" value="id_category_'.$cat['idCategory'].'">
+								</span>
+								<span class="form-control categoryName">'.$cat['category_name'].'</span>
+								</div>';
+		}
+
+		$_GET['edit']="art_".$article_id;
+
+
+		$Article = new Article($id, $title, $catId, $content, $pubdate, $ftimage, $link);
+
+		if($id == -1){
+			$response = $Article->addNewData();
+		}else{
+			$response = $Article->updateData();
+		}
+
+		$stat = json_decode($response,true)['Status'];
+
+		if($stat == "OK"){
+			echo "OK";
+		}else{
+			echo "KO";
+		}
+	}else{
+
+		$title = $data['title'];
+		$content=$data['content'];
+		$categoryID=$data['category'];
+		$pubdate = $data['pubdate'];
+		$ftimage = $data['featured_image'];
+		$link = $data['featured_link'];
+
+		$article_id = split("_",$_GET['edit'])[1];
+
+		$categoriesArray = $DB->returnAllRows($DB->StartQuery($Q->getAllCategories()));
+
+		$categoriesView = "";
+
+		foreach($categoriesArray as $cat){
+			$categoriesView .= '<div class="input-group categoryGroup">
+								<span class="input-group-addon">
+									<input class="categorycheck" type="checkbox" id="check_'.$cat['idCategory'].'" name="article_category" value="id_category_'.$cat['idCategory'].'">
+								</span>
+								<span class="form-control categoryName">'.$cat['category_name'].'</span>
+								</div>';
+		}
+
 	}
+
+
 ?>
 
 <br>
@@ -35,7 +85,7 @@
 
 <div class=row>
 	<div class="col-md-1"></div>
-	<form role="form" id="installationform" action=<? echo BASEHREF.'update/';?>artreceiver.php method="post">
+	<form role="form" id="installationform" action="#" method="post">
 	<input type="text" name="article_id" style="display:none" value=<? echo '"'.$article_id.'"';?>></input>
 
 		<div class="col-md-6" id="columneditor">
@@ -45,7 +95,7 @@
 			</div>
 
 			<textarea name="article_content" id="editor"><? echo $content; ?></textarea><br>
-			<button type="submit" class="btn btn-default savebutton savearticle" style="background-color:#C67171;color:black"><strong>Save</strong></button>
+			<button type="submit" name="update" class="btn btn-default savebutton savearticle" style="background-color:#C67171;color:black"><strong>Save</strong></button>
 		</div>
 
 		<div class="col-md-4">

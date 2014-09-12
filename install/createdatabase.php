@@ -56,7 +56,7 @@
 		}
 	}
 
-	function redirectToUserForm($user_info){
+	function redirectToUserForm(){
 		die('<script>location.href="'.$_SERVER['HTTP_REFERER'].'install/userform.html"</script>');
 	}	
 
