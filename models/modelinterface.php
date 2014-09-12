@@ -5,7 +5,7 @@
 
 include dirname(__FILE__).'/../abspath.php';
 include ABSOLUTEPATH.'/utilities/database.php';
-//include ABSOLUTEPATH.'/install/install.php';
+include_once ABSOLUTEPATH.'/install/install.php';
 include ABSOLUTEPATH.'/config/query.php';
 
 	interface modelinterface{
