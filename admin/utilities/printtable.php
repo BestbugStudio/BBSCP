@@ -53,7 +53,7 @@ Class PrintTable{
 							  	</a>
 							  </td>
 							  <td>
-							  	<a href="?'.$this->optarr.$this->removelink.$this->valarr[$i][0].'">
+							  	<a href="?'.$this->optarr.$this->removelink.$this->valarr[$j][0].'">
 							  		<span id="remove_'.$this->valarr[$j][0].'" class="glyphicon glyphicon-remove removespan"></span>
 							  	</a>
 							  </td>

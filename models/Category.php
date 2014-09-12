@@ -29,7 +29,7 @@ Class Category implements modelinterface{
 
 	public function getFromId($id){
 		$DB = new Database(Install::getInstance());
-		$Q = new Query
+		$Q = new Query();
 		$DB->connect();
 
 		$res = $DB->startQuery($Q->getCategoryFromId($id));
@@ -41,7 +41,7 @@ Class Category implements modelinterface{
 
 	public static function getAllData(){
 		$DB = new Database(Install::getInstance());
-		$Q = new Query
+		$Q = new Query();
 		$DB->connect();
 
 		$res = $DB->startQuery($Q->getAllCategories());

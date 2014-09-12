@@ -44,9 +44,9 @@
 		$stat = json_decode($response,true)['Status'];
 
 		if($stat == "OK"){
-			echo "OK";
+			echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Aw Yeah! All datas are up to date! :)</div>';
 		}else{
-			echo "KO";
+			echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Oh snap! Something went wrong! Check you\'ve done everything right and try again :(</div>';
 		}
 	}else{
 
@@ -142,12 +142,6 @@
 		</div>
 	</form>
 </div>
-
-<script>
-	CKEDITOR.replace("editor", {customConfig: "./customckconfig.js"});
-	$(<?php echo '"#check_'.$categoryID.'"';?>).prop("checked",true);
-	$("#datetimepicker").datetimepicker({format:"Y-m-d H:i:s"});
-</script>
 
 <?
 	/********************************************/
