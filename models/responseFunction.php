@@ -3,12 +3,12 @@
 	/******* BestBug Studio Control Panel *******/
 	/********************************************/
 	
-	function sendResponse($validMessage,$invalidMessage,$data,$expectedBool){
+	function sendResponse($validMessage,$invalidMessage,$data,$expectedData){
 		
-		if($expectedBool)
-			$cond = ($res==1);
+		if($expectedData)
+			$cond = ($data==1);
 		else
-			$cond = ($res != null || $res != "" || !empty($res));
+			$cond = ($data != null || $data != "" || !empty($data));
 
 		if($cond){
 			$response = array(

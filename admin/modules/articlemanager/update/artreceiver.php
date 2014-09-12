@@ -1,17 +1,13 @@
 <?
-
+	/********************************************/
+	/******* BestBug Studio Control Panel *******/
+	/********************************************/
+	
 	include dirname(__FILE__).'/../../../../models/Article.php';
-
-echo 'POST:<br>';
-	print_r($_POST);
-echo '<br>FILE:<br>';
-	var_dump($_FILE);
-echo '<br>';
 
 	$DB = new Database(Install::getInstance());
 	$DB->connect();
 	
-	// GET POST DATA, CREATE ARTICLE OBJECT AND UPDATE IT IN DATABASE
 	$id 	= $DB->sanitize($_POST['article_id']);
 	$title	= $DB->sanitize($_POST['article_title']);
 	$catId	= $DB->sanitize(split("_",$_POST['article_category'])[2]);
@@ -19,7 +15,6 @@ echo '<br>';
 	$pubdate= $DB->sanitize($_POST['article_pubdate']);
 	$link	= $DB->sanitize($_POST['article_link']);
 	$ftimage= $DB->sanitize($_POST['article_image']);
-
 
 	$Article = new Article($id, $title, $catId, $content, $pubdate, $ftimage, $link);
 
@@ -29,6 +24,16 @@ echo '<br>';
 		$response = $Article->updateData();
 	}
 
-	echo $response;
+	$jres = json_decode($response,true);
+	$stat = $jres['Status'];
 
+	if($stat == "OK"){
+		//Get back to previous page with OK status
+	}else{
+		//Get back to previous page with KO status
+	}
+
+	/********************************************/
+	/******* BestBug Studio Control Panel *******/
+	/********************************************/
 ?>

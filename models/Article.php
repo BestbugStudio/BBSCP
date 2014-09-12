@@ -58,7 +58,7 @@ Class Article implements modelinterface{
 		$res = $DB->returnAllRows($res);
 
 		$DB->disconnect();
-		sendResponse('Articles found','No articles found for this category',$res,false);
+		return sendResponse('Articles found','No articles found for this category',$res,false);
 	}
 
 
@@ -71,7 +71,7 @@ Class Article implements modelinterface{
 		$res = $DB->returnAllRows($res);
 
 		$DB->disconnect();
-		sendResponse('Articles found','No articles found',$res,false);
+		return sendResponse('Articles found','No articles found',$res,false);
 	}
 
 	public function addNewData(){
@@ -82,7 +82,7 @@ Class Article implements modelinterface{
 		$res = $DB->startQuery($Q->addNewArticle($this->getObjectData()));
 
 		$DB->disconnect();
-		sendResponse('Article successfully added','Something went wrong with the query',null,true);
+		return sendResponse('Article successfully added','Something went wrong with the query',$res,true);
 	}
 
 	public function updateData(){
@@ -93,7 +93,7 @@ Class Article implements modelinterface{
 		$res = $DB->startQuery($Q->updateArticle($this->getObjectData()));
 		
 		$DB->disconnect();
-		sendResponse('Article successfully update','Something went wrong, check the information you provided',null,true);
+		return sendResponse('Article successfully update','Something went wrong, check the information you provided',$res,true);
 	}
 
 	public function deleteData(){
@@ -104,7 +104,7 @@ Class Article implements modelinterface{
 		$res = $DB->startQuery($Q->deleteArticle($this->getId()));
 
 		$DB->disconnect();
-		sendResponse('Article deleted successfully','Something went wrong while deleting the article',null,true);
+		return sendResponse('Article deleted successfully','Something went wrong while deleting the article',null,true);
 	}
 }
 
