@@ -50,12 +50,12 @@
 		}
 	}else{
 
-		$title = $data['title'];
-		$content=$data['content'];
-		$categoryID=$data['category'];
-		$pubdate = $data['pubdate'];
-		$ftimage = $data['featured_image'];
-		$link = $data['featured_link'];
+		$title 		= $data['title'];
+		$content 	= $data['content'];
+		$categoryID	= $data['category'];
+		$pubdate 	= $data['pubdate'];
+		$ftimage 	= $data['featured_image'];
+		$link 		= $data['featured_link'];
 
 		$article_id = split("_",$_GET['edit'])[1];
 
