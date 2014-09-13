@@ -38,12 +38,12 @@
 		}
 		
 		public function startQuery($Query){
-			$Result = mysqli_query($this->DB, $Query) or die(json_encode(array("Status"=>"KO","Reason"=>$Query." || ".mysqli_error($this->DB),"Err.no"=>mysqli_errno($this->DB))));
+			$Result = mysqli_query($this->DB, $Query); //or die(json_encode(array("Status"=>"KO","Reason"=>$Query." || ".mysqli_error($this->DB),"Err.no"=>mysqli_errno($this->DB))));
 
 			if($Result)
 				return $Result;
 			else
-				return false;	
+				return json_encode(array("Status"=>"KO","Reason"=>$Query." || ".mysqli_error($this->DB),"Err.no"=>mysqli_errno($this->DB)));	
 		}
 		
 		public function queryNumFields($Result){

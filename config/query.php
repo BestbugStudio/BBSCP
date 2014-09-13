@@ -74,7 +74,7 @@ class Query{
 	}
 	public function updateCategory($json_data){
 		$json_data = json_decode($json_data,true);		
-		return "UPDATE categories SET category_name='".$json_data['category_name']."' WHERE idCategory=".$json_data['id'].";";
+		return "UPDATE categories SET category_name='".$json_data['category_name']."' WHERE idCategory=".$json_data['idCategory'].";";
 	}
 	public function deleteCategory($id){
 		return "DELETE FROM categories WHERE idCategory=$id;";

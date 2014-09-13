@@ -141,6 +141,12 @@
 			</div>
 		</div>
 	</form>
+	<script>
+		CKEDITOR.replace("editor", {customConfig: "./customckconfig.js"});
+		$(<?php echo '"#check_'.$categoryID.'"';?>).prop("checked",true);
+		$("#datetimepicker").datetimepicker({format:"Y-m-d H:i:s"});
+	</script>
+
 </div>
 
 <?

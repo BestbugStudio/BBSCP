@@ -13,7 +13,7 @@
 		$name = $_POST['category_name'];
 
 		echo $id." & ".$name;
-		$Category = new Category($id, $title);
+		$Category = new Category($id, $name);
 
 		if($id == -1){
 			$response = $Category->addNewData();
@@ -21,16 +21,16 @@
 			$response = $Category->updateData();
 		}
 
-		print_r($response);
 		$stat = json_decode($response,true)['Status'];
-
+print_r($response);
 		if($stat == "OK"){
 			echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Aw Yeah! All datas are up to date! :)</div>';
 		}else{
-			echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Oh snap! Something went wrong! Check you\'ve done everything right and try again :(</div>';
+			echo '<div class="alert alert-danger  alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Oh snap! Something went wrong! Check you\'ve done everything right and try again :(</div>';
+			echo json_decode($response,true)['Reason'];
 		}
 	}else{
-		$id = $data['idCategory'];
+		$id = split("_",$_GET['edit'])[1];
 		$name = $data['category_name'];
 	}
 

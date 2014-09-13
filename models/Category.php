@@ -36,7 +36,7 @@ Class Category implements modelinterface{
 		$res = $DB->returnFirstRow($res);
 
 		$DB->disconnect();
-		sendResponse('Category found','Error, category not found',$res,false);
+		return sendResponse('Category found','Error, category not found',$res,false);
 	}
 
 	public static function getAllData(){
@@ -48,7 +48,7 @@ Class Category implements modelinterface{
 		$res = $DB->returnAllRows($res);
 
 		$DB->disconnect();
-		sendResponse('All categories found','Error, no category has been found',$res,false);
+		return sendResponse('All categories found','Error, no category has been found',$res,false);
 	}
 
 	public function addNewData(){
@@ -59,7 +59,7 @@ Class Category implements modelinterface{
 		$res = $DB->StartQuery($Q->addNewCategory($this->getObjectData()));
 		
 		$DB->disconnect();
-		sendResponse('Category successfully added','Something went wrong while adding the category, try again',null,true);
+		return sendResponse('Category successfully added','Something went wrong while adding the category, try again',$res,true);
 	}
 
 	public function updateData(){
@@ -70,7 +70,7 @@ Class Category implements modelinterface{
 		$res = $DB->StartQuery($Q->updateCategory($this->getObjectData()));
 
 		$DB->disconnect();
-		sendResponse('Category successfully updated','Something went wrong, check the information you entered',null,true);
+		return sendResponse('Category successfully updated','Something went wrong, check the information you entered',$res,true);
 	}
 
 	public function deleteData(){
@@ -81,7 +81,7 @@ Class Category implements modelinterface{
 		$res = $DB->StartQuery($Q->deleteCategory($this->getId()));
 
 		$DB->disconnect();
-		sendResponse('Category successfully deleted','Something went wrong, try again',null,true);
+		return sendResponse('Category successfully deleted','Something went wrong, try again',null,true);
 	}
 }
 
