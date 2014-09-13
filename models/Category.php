@@ -18,7 +18,7 @@ Class Category implements modelinterface{
 
 	public function getObjectData(){
 		return json_encode(array(
-				'id'			=> $this->id,
+				'idCategory'	=> $this->id,
 				'category_name'	=> $this->categoryname
 			));
 	}

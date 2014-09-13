@@ -69,9 +69,11 @@ class Query{
 		return "SELECT idCategory, category_name FROM categories;";
 	}
 	public function addNewCategory($json_data){
+		$json_data = json_decode($json_data,true);
 		return "INSERT INTO categories (category_name) VALUES ('".$json_data['category_name']."');";
 	}
 	public function updateCategory($json_data){
+		$json_data = json_decode($json_data,true);		
 		return "UPDATE categories SET category_name='".$json_data['category_name']."' WHERE idCategory=".$json_data['id'].";";
 	}
 	public function deleteCategory($id){
