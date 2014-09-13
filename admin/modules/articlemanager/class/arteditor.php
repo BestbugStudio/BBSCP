@@ -30,9 +30,6 @@
 								</div>';
 		}
 
-		$_GET['edit']="art_".$article_id;
-
-
 		$Article = new Article($id, $title, $catId, $content, $pubdate, $ftimage, $link);
 
 		if($id == -1){
@@ -41,12 +38,15 @@
 			$response = $Article->updateData();
 		}
 
-		$stat = json_decode($response,true)['Status'];
+		$resposearr = json_decode($response,true);
 
-		if($stat == "OK"){
-			echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Aw Yeah! All datas are up to date! :)</div>';
+		if($resposearr['Status'] == "OK"){
+			// TODO: SET NEW $GET VALUE TO THE NEW ID
+			$_GET['edit']= "art_".$article_id;	
+
+			echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$resposearr['Message'].'</div>';
 		}else{
-			echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Oh snap! Something went wrong! Check you\'ve done everything right and try again :(</div>';
+			echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$resposearr['Message'].'</div>';
 		}
 	}else{
 

@@ -21,7 +21,7 @@
 
 		$response = array(
 			'Status'	=> 'KO',
-			'Reason'	=> $invalidMessage
+			'Message'	=> $invalidMessage
 		);
 		return json_encode($response);
 	}

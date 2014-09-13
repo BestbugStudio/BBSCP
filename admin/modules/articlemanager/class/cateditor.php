@@ -12,7 +12,6 @@
 		$id = $_POST['idCategory'];
 		$name = $_POST['category_name'];
 
-		echo $id." & ".$name;
 		$Category = new Category($id, $name);
 
 		if($id == -1){
@@ -20,15 +19,17 @@
 		}else{
 			$response = $Category->updateData();
 		}
+		
+		$resposearr = json_decode($response,true);
 
-		$stat = json_decode($response,true)['Status'];
-print_r($response);
-		if($stat == "OK"){
-			echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Aw Yeah! All datas are up to date! :)</div>';
+		if($resposearr['Status'] == "OK"){
+			// TODO: SET NEW $GET VALUE TO THE NEW ID
+			$_GET['edit'] = "cat_".$id;
+			echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$resposearr['Message'].'</div>';
 		}else{
-			echo '<div class="alert alert-danger  alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Oh snap! Something went wrong! Check you\'ve done everything right and try again :(</div>';
-			echo json_decode($response,true)['Reason'];
+			echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$resposearr['Message'].'</div>';
 		}
+
 	}else{
 		$id = split("_",$_GET['edit'])[1];
 		$name = $data['category_name'];
