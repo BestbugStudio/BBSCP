@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+
+	<modulename>
+		<fullname>Module Installer</fullname>
+		<shortname>ModIn</shortname>
+		<foldername>moduleinstaller</foldername>
+	</modulename>
+	
+	<menu>
+		<parent>Module Installer</parent>
+	</menu>
+
+	<sqlfile>none</sqlfile>
+
+</items>
