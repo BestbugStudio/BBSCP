@@ -1,24 +1,9 @@
-<?
-	/********************************************/
-	/******* BestBug Studio Control Panel *******/
-	/********************************************/
+<?php
 
-	define(MODULENAME, 'moduleinstaller');
-	define(BASEHREF, 'modules/'.MODULENAME.'/');
-
-Class ModuleInstaller{
-
-	public function getOptions(){
-
+	class moduleinstaller implements imoduleinstaller{
+		function getSql();
+		function readModConfig();
+		function installModule($path);
+		function getView();
 	}
-	
-	public function getView($options){
-
-
-	}
-}
-
-	/********************************************/
-	/******* BestBug Studio Control Panel *******/
-	/********************************************/
 ?>

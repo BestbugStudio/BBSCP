@@ -4,7 +4,7 @@
 	/********************************************/
 
 	include dirname(__FILE__).'/class/moduleinstaller.php';
-	return new ModuleInstaller();
+	return new moduleinstaller();
 
 	/********************************************/
 	/******* BestBug Studio Control Panel *******/
