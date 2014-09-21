@@ -41,7 +41,7 @@
 		$resposearr = json_decode($response,true);
 
 		if($resposearr['Status'] == "OK"){
-			// TODO: SET NEW $GET VALUE TO THE NEW ID
+			//	 TODO: SET NEW $GET VALUE TO THE NEW ID
 			$_GET['edit']= "art_".$article_id;	
 
 			echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$resposearr['Message'].'</div>';
